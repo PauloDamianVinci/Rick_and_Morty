@@ -1,6 +1,7 @@
 import style from "./Card.module.css";
 let { container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features } = style;
-//<button className={buttonClose} onClick={handleClick}>X</button>
+import { Link } from "react-router-dom";
+
 const Card = (props) => {
    const handleClick = () => {
       onClose(id);
@@ -12,7 +13,9 @@ const Card = (props) => {
          <div className={containerButtonImg}>
             <button className={buttonClose} onClick={handleClick}>X</button>
             <img className={img} src={image} alt="" />
-            <h2 className={nameC}>{name}</h2>
+            <Link to={`/detail/${id}`} >
+               <h2 className={nameC}>{name}</h2>
+            </Link>
          </div>
          <div className={containerFeatures}>
             <h2 className={features}>{species}</h2>

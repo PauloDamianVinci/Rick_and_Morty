@@ -1,7 +1,11 @@
 import Cards from "../Cards/Cards";
 import Nav from "../Nav/Nav";
+import About from "../../views/About";
+import Error from "../../views/Error";
+import Detail from "../../views/Detail";
 import { useState } from "react";
 import axios from 'axios';
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -34,12 +38,19 @@ function App() {
     const filteredCharacters = characters.filter(character => character.id !== parseInt(id));
     setCharacters(filteredCharacters);
   }
-
-
+  // <Nav onSearch={onSearch} />
+  // <Cards characters={characters} onClose={onClose} />
+  // <Nav onSearch={onSearch} />
   return (
     <div>
       <Nav onSearch={onSearch} />
-      <Cards characters={characters} onClose={onClose} />
+      <Routes>
+        <Route path="/" element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </div>
   );
 }

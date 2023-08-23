@@ -1,0 +1,22 @@
+.container {
+    background-color: rgb(84, 128, 122);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.button {
+    background-color: rgb(207, 39, 207);
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    margin: 10px;
+}
+
+@media (max-width: 500px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}
