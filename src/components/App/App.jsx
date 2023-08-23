@@ -6,7 +6,7 @@ import axios from 'axios';
 function App() {
   const [characters, setCharacters] = useState([]);
 
-  function onSearch(id) {
+  const onSearch = (id) => {
     axios(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {
         if (data.name) {
@@ -34,6 +34,7 @@ function App() {
     const filteredCharacters = characters.filter(character => character.id !== parseInt(id));
     setCharacters(filteredCharacters);
   }
+
 
   return (
     <div>

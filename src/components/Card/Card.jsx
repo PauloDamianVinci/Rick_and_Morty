@@ -1,7 +1,7 @@
 import style from "./Card.module.css";
 let { container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features } = style;
-
-export default function Card(props) {
+//<button className={buttonClose} onClick={handleClick}>X</button>
+const Card = (props) => {
    const handleClick = () => {
       onClose(id);
    };
@@ -22,4 +22,5 @@ export default function Card(props) {
    );
 }
 
+export default Card
 

@@ -10,11 +10,12 @@ const SearchBar = (props) => {
    }
 
    const randomId = Math.floor(Math.random() * 826) + 1;
-
+   //<input type="search" placeholder="Id" className={style.input} name="srch" onChange={handleChange} />
+   //<button className={style.button} onClick={() => { onSearch(id); }}>Agregar</button>
    return (
       <div className={style.container}>
          <div className={style.cuadroTexto}>
-            <input type="search" placeholder="Id" className={style.input} onChange={handleChange} />
+            <input type="search" placeholder="Id" className={style.input} name="srch" onChange={handleChange} value={id} />
             <button className={style.button} onClick={() => { onSearch(id); }}>Agregar</button>
             <button className={style.button} onClick={() => { onSearch(randomId); }}>Random</button>
          </div>

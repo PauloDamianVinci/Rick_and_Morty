@@ -1,5 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
-export default function Nav(props) {
+
+const Nav = (props) => {
     const { onSearch } = props;
     return (
         <div>
@@ -7,5 +8,6 @@ export default function Nav(props) {
         </div>
     );
 }
+export default Nav
 
 
