@@ -20,6 +20,7 @@ const Card = (props) => {
          <div className={containerFeatures}>
             <h2 className={features}>{species}</h2>
             <h2 className={features}>{gender}</h2>
+
          </div>
       </div>
    );

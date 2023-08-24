@@ -14,6 +14,7 @@ const Detail = () => {
         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
             if (data.name) {
                 setCharacter(data);
+                //console.log(data.origin);
             } else {
                 window.alert('No hay personajes con ese ID');
             }
@@ -22,6 +23,13 @@ const Detail = () => {
         return setCharacter({});
 
     }, [id]);
+
+    let originName = "-"
+    for (let prop in character.origin) {
+        if (prop === 'name') {
+            originName = character.origin[prop];
+        }
+    }
 
     return (
         <div className={container}>
@@ -34,6 +42,7 @@ const Detail = () => {
                         <h2 className={features}>STATUS | {character.status}</h2>
                         <h2 className={features}>GENDER | {character.gender}</h2>
                         <h2 className={features}>SPECIE | {character.species}</h2>
+                        <h2 className={features}>ORIGIN | {originName}</h2>
                     </div>
                     <div className={containerImg}>
                         <img className={img} src={character.image} alt="" />

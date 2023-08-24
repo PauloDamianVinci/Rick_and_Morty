@@ -7,7 +7,8 @@ import { useState } from "react";
 import axios from 'axios';
 import { Route, Routes } from "react-router-dom";
 
-function App() {
+//function App() {
+const App = () => {
   const [characters, setCharacters] = useState([]);
 
   const onSearch = (id) => {
@@ -38,9 +39,7 @@ function App() {
     const filteredCharacters = characters.filter(character => character.id !== parseInt(id));
     setCharacters(filteredCharacters);
   }
-  // <Nav onSearch={onSearch} />
-  // <Cards characters={characters} onClose={onClose} />
-  // <Nav onSearch={onSearch} />
+
   return (
     <div>
       <Nav onSearch={onSearch} />
