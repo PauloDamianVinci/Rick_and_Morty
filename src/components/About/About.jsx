@@ -1,6 +1,6 @@
-import style from "./AboutText.module.css";
+import style from "./About.module.css";
 
-const AboutText = () => {
+const About = () => {
     return (
         <p className={style.container}>
             Información de esta página de Rick and Morty
@@ -8,4 +8,4 @@ const AboutText = () => {
     )
 };
 
-export default AboutText;
+export default About;

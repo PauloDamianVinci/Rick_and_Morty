@@ -1,6 +1,6 @@
-import style from "./ErrorText.module.css";
+import style from "./Error.module.css";
 
-const ErrorText = () => {
+const Error = () => {
     return (
         <p className={style.container}>
             ERROR 404, mi viejo!!
@@ -8,4 +8,4 @@ const ErrorText = () => {
     )
 };
 
-export default ErrorText;
+export default Error;

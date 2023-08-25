@@ -5,5 +5,5 @@ const Detail = () => {
             <DetailText />
         </div>
     )
-}
+};
 export default Detail

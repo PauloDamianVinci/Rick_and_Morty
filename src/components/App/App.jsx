@@ -1,13 +1,13 @@
 import Cards from "../Cards/Cards";
 import Nav from "../Nav/Nav";
-import About from "../../views/About";
-import Error from "../../views/Error";
-import Detail from "../../views/Detail";
+import About from "../../views/About.view";
+import Error from "../../views/Error.view";
+import Detail from "../../views/Detail.view";
 import { useState } from "react";
 import axios from 'axios';
 import { Route, Routes } from "react-router-dom";
+import PATHROUTES from "../../helpers/PathRoutes";
 
-//function App() {
 const App = () => {
   const [characters, setCharacters] = useState([]);
 
@@ -44,9 +44,9 @@ const App = () => {
     <div>
       <Nav onSearch={onSearch} />
       <Routes>
-        <Route path="/" element={<Cards characters={characters} onClose={onClose} />} />
-        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
-        <Route path="/about" element={<About />} />
+        <Route path={PATHROUTES.ROOT} element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path={PATHROUTES.ABOUT} element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="*" element={<Error />} />
       </Routes>
