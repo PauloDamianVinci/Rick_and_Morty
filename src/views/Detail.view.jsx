@@ -1,9 +1,9 @@
-import DetailText from "../components/Detail/Detail";
-const Detail = () => {
+import Detail from "../components/Detail/Detail";
+const DetailView = () => {
     return (
         <div>
-            <DetailText />
+            <Detail />
         </div>
     )
 };
-export default Detail
+export default DetailView
