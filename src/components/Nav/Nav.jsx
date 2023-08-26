@@ -5,7 +5,7 @@ import style from "./Nav.module.css";
 let { container, button } = style;
 
 const Nav = (props) => {
-    const { onSearch } = props;
+    const { onSearch, logout } = props;
     return (
         <div className={container}>
             <Link to="/home">
@@ -14,8 +14,9 @@ const Nav = (props) => {
             <Link to="/about">
                 <button className={button} >About</button>
             </Link>
+            <button className={button} onClick={() => { logout(); }}>Logout</button>
             <SearchBar onSearch={onSearch} />
-        </div>
+        </div >
     );
 }
 export default Nav

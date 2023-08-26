@@ -3,11 +3,13 @@ let { container, containerButtonImg, buttonClose, img, nameC, containerFeatures,
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
+   const { id, name, status, species, gender, origin, image, onClose } = props;
+
    const handleClick = () => {
       onClose(id);
    };
 
-   const { id, name, status, species, gender, origin, image, onClose } = props;
+
    return (
       <div className={container}>
          <div className={containerButtonImg}>

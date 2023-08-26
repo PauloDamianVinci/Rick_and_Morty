@@ -1,32 +1,46 @@
+// Componentes:
 import Cards from "../Cards/Cards";
 import Nav from "../Nav/Nav";
+// Vistas:
 import About from "../../views/About.view";
 import Error from "../../views/Error.view";
 import Form from "../../views/Form.view";
 import Detail from "../../views/Detail.view";
+// hooks y routers:
 import { useState, useEffect } from "react";
-import axios from 'axios';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+// Otros:
+import axios from 'axios';
 import PATHROUTES from "../../helpers/PathRoutes";
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const EMAIL = "erraticless@gmail.com";
   const PASSWORD = "123456";
-  const navigate = useNavigate();
 
   useEffect(() => {
+    // Sin login no permito navegar por las páginas:
     !access && navigate('/');
   }, [access]);
 
   const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
+    if (userData.password === PASSWORD && userData.mail === EMAIL) {
       setAccess(true);
-      navigate('/home'); //{PATHROUTES.HOME}
+      navigate(`${PATHROUTES.HOME}`);
     }
   }
 
+  const logout = () => {
+    // Quito el acceso:
+    setAccess(false);
+    // elimino tarjetas:
+    setCharacters([]);
+    // Cargo la pag de login:
+    navigate(`${PATHROUTES.ROOT}`);
+  }
 
   const onSearch = (id) => {
     axios(`https://rickandmortyapi.com/api/character/${id}`)
@@ -53,11 +67,11 @@ const App = () => {
   }
 
   const onClose = (id) => {
+    // Cierro una card:
     const filteredCharacters = characters.filter(character => character.id !== parseInt(id));
     setCharacters(filteredCharacters);
   }
 
-  const location = useLocation();
   if (location.pathname === PATHROUTES.ROOT) {
     return (
       <div>
@@ -68,15 +82,14 @@ const App = () => {
   } else {
     return (
       <div>
-        <Nav onSearch={onSearch} />
+        <Nav onSearch={onSearch} logout={logout} />
         <Routes>
           <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
           <Route path={PATHROUTES.ABOUT} element={<About />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path={PATHROUTES.DETAIL} element={<Detail />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>);
   }
 }
-
-export default App
+export default App;

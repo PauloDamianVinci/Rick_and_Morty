@@ -1,8 +1,9 @@
 import Form from "../components/Form/Form";
-const FormView = () => {
+const FormView = (props) => {
+    const { login } = props;
     return (
         <div>
-            <Form />
+            <Form login={login} />
         </div>
     )
 };
