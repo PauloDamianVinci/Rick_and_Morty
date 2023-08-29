@@ -21,6 +21,7 @@ const App = () => {
   const EMAIL = "erraticless@gmail.com";
   const PASSWORD = "123456";
 
+
   useEffect(() => {
     // Sin login no permito navegar por las páginas:
     !access && navigate('/');
