@@ -14,6 +14,9 @@ const Nav = (props) => {
             <Link to="/about">
                 <button className={button} >About</button>
             </Link>
+            <Link to="/favorites">
+                <button className={button} >Favoritos</button>
+            </Link>
             <button className={button} onClick={() => { logout(); }}>Logout</button>
             <SearchBar onSearch={onSearch} />
         </div >

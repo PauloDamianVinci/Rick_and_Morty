@@ -18,6 +18,17 @@
     left: 90%;
 }
 
+.buttonFav {
+    position: absolute;
+    background-color: rgba(15, 15, 15, 0);
+    border: 0px;
+    width: 25px;
+    height: 25px;
+    top: 0%;
+    left: 0%;
+    font-size: 24px;
+}
+
 .img {
     max-width: 100%;
     height: auto;

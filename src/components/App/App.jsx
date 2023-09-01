@@ -1,6 +1,7 @@
 // Componentes:
 import Cards from "../Cards/Cards";
 import Nav from "../Nav/Nav";
+import Favorites from "../Favorites/Favorites";
 // Vistas:
 import About from "../../views/About.view";
 import Error from "../../views/Error.view";
@@ -50,6 +51,7 @@ const App = () => {
           // verifico repeticiones:
           const ids = characters.map(el => el.id);
           if (!ids.includes(parseInt(id))) {
+            //console.log("se agrega id ", id);
             setCharacters((oldChars) => [...oldChars, data]);
           } else {
             window.alert('¡Ese personaje ya existe!');
@@ -88,6 +90,7 @@ const App = () => {
           <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
           <Route path={PATHROUTES.ABOUT} element={<About />} />
           <Route path={PATHROUTES.DETAIL} element={<Detail />} />
+          <Route path={PATHROUTES.FAVORITES} element={<Favorites characters={characters} onClose={onClose} onSearch={onSearch} />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>);
