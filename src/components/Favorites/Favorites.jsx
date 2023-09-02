@@ -1,72 +1,46 @@
-import Card from "../Card/Card.jsx";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getFav } from "../../redux/actions.js";
+import { getFavFicha } from "../../redux/actions.js";
+
+import Card from "../Card/Card.jsx";
 import style from "./Favorites.module.css";
 
 const Favorites = (props) => {
-    const { characters, onClose, onSearch } = props;
     const dispatch = useDispatch();
-    const myFavorites = useSelector((state) => state.myFavorites);
+    const characters = useSelector((state) => state.characters);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         mapStateToProps();
-        //console.log(myFavorites);
-        console.log(obtenerInfoFavoritos());
-        //console.log(characters);
+        console.log("characters: ", characters);
+        setIsLoading(false);
     }, []);
 
     const mapStateToProps = () => {
-        return dispatch(getFav());
-    }
-
-    const obtenerInfoFavoritos = () => {
-        const listado = myFavorites.map(id => {
-            //console.log('id: ', id);
-            const resultadoBusqueda = onSearch(id);
-            return {
-                resultadoBusqueda
-            };
-        });
-        //console.log('listado: ', listado);
-        return listado;
+        dispatch(getFavFicha());
     }
 
     return (
         <div className={style.container}>
-            {characters.map((char) => {
-                return (
+            {isLoading ? (
+                <p>Cargando...</p>
+            ) : characters ? (
+                characters.map((character) => (
                     <Card
-                        id={char.id}
-                        key={char.id}
-                        name={char.name}
-                        status={char.status}
-                        species={char.species}
-                        gender={char.gender}
-                        origin={char.origin.name}
-                        image={char.image}
-                        onClose={onClose}
+                        id={character.id}
+                        key={character.id}
+                        name={character.name}
+                        status={character.status}
+                        species={character.species}
+                        gender={character.gender}
+                        origin={character.origin?.name}
+                        image={character.image}
+                        originHome={false}
                     />
-                );
-            })}
+                ))
+            ) : null}
         </div>
     );
-}
+};
 
 export default Favorites;
-
-// {myFavorites.map((char) => {
-//     return (
-//         <Card
-//             id={char.id}
-//             key={char.id}
-//             name={char.name}
-//             status={char.status}
-//             species={char.species}
-//             gender={char.gender}
-//             origin={char.origin.name}
-//             image={char.image}
-//             onClose={onClose}
-//         />
-//     );
-//})}
