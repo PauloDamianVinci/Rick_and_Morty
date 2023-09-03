@@ -1,8 +1,6 @@
 import Card from "../Card/Card.jsx";
 import style from "./Cards.module.css";
 
-
-
 const Cards = (props) => {
    const { characters, onClose } = props;
 

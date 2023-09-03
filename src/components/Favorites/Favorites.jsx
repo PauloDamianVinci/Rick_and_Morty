@@ -1,31 +1,30 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavFicha } from "../../redux/actions.js";
+import { getFav } from "../../redux/actions.js";
 
 import Card from "../Card/Card.jsx";
 import style from "./Favorites.module.css";
 
 const Favorites = (props) => {
     const dispatch = useDispatch();
-    const characters = useSelector((state) => state.characters);
+    const myFavorites = useSelector((state) => state.myFavorites);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         mapStateToProps();
-        console.log("characters: ", characters);
         setIsLoading(false);
     }, []);
 
     const mapStateToProps = () => {
-        dispatch(getFavFicha());
+        dispatch(getFav());
     }
 
     return (
         <div className={style.container}>
             {isLoading ? (
                 <p>Cargando...</p>
-            ) : characters ? (
-                characters.map((character) => (
+            ) : myFavorites ? (
+                myFavorites.map((character) => (
                     <Card
                         id={character.id}
                         key={character.id}

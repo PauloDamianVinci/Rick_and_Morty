@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addFav, removeFav, addFavFicha, removeFavFicha } from "../../redux/actions";
+import { addFav, removeFav } from "../../redux/actions";
 // Estilos:
 import style from "./Card.module.css";
 let { buttonFav, container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features } = style;
@@ -29,12 +29,10 @@ class Card extends React.Component {
       const propsCard = this.props;
       if (this.state.isFav) {
          this.setState({ isFav: false });
-         this.props.removeFav(this.props.id); // sólo id
-         this.props.removeFavFicha(propsCard); // datos completos de la card
+         this.props.removeFav(propsCard); // datos completos de la card
       } else {
          this.setState({ isFav: true });
-         this.props.addFav(this.props.id); // sólo id
-         this.props.addFavFicha(propsCard); // datos completos de la card
+         this.props.addFav(propsCard); // datos completos de la card
       }
    };
 
@@ -44,8 +42,9 @@ class Card extends React.Component {
 
    componentDidMount() {
       this.props.myFavorites.forEach((fav) => {
-         if (fav === this.props.id) {
+         if (fav.id === parseInt(this.props.id)) {
             this.setState({ isFav: true });
+            console.log('found');
          }
       });
    }
@@ -91,18 +90,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      addFav: (id) => {
-         dispatch(addFav(id));
+      addFav: (props) => {
+         dispatch(addFav(props));
       },
-      removeFav: (id) => {
-         dispatch(removeFav(id));
+      removeFav: (props) => {
+         dispatch(removeFav(props));
       },
-      addFavFicha: (props) => {
-         dispatch(addFavFicha(props));
-      },
-      removeFavFicha: (props) => {
-         dispatch(removeFavFicha(props));
-      }
    };
 };
 
