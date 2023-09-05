@@ -77,14 +77,6 @@ const App = () => {
     setCharacters(filteredCharacters);
   }
 
-  // const onClose = (id) => {
-  //   setCharacters(
-  //     characters.filter((char) => {
-  //       return char.id !== Number(id);
-  //     })
-  //   );
-  // };
-
   if (location.pathname === PATHROUTES.ROOT) {
     return (
       <div>

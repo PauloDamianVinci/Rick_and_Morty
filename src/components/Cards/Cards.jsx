@@ -1,8 +1,19 @@
 import Card from "../Card/Card.jsx";
 import style from "./Cards.module.css";
 
+
+import { filterCards } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+
+
 const Cards = (props) => {
    const { characters, onClose } = props;
+   const dispatch = useDispatch();
+
+   console.log("-----I----- characters CARDS: ", characters);
+   dispatch(filterCards("Todos")); // limpio filtro para que muestre todas las cards en home
+   console.log("----F------ characters CARDS: ", characters);
+
 
    return (
       <div className={style.container}>
@@ -12,7 +23,7 @@ const Cards = (props) => {
                   id={char.id}
                   key={char.id}
                   name={char.name}
-                  status={char.status}
+                  // status={char.status}
                   species={char.species}
                   gender={char.gender}
                   origin={char.origin.name}

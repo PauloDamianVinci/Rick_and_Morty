@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { addFav, removeFav } from "../../redux/actions";
+import { addFav, removeFav, filterCards } from "../../redux/actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Card.module.css";
 let { buttonFav, container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features } = style;
 
 const Card = (props) => {
-   const { id, name, status, species, gender, origin, image, onClose } = props;
+   const { id, name, species, gender, image, onClose } = props;
    const { pathname } = useLocation();
    const [isFav, setIsFav] = useState(false);
    const dispatch = useDispatch();
@@ -18,11 +18,18 @@ const Card = (props) => {
    };
 
    useEffect(() => {
+      console.log("-- I myFavorites CARD: ", myFavorites);
       myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
             setIsFav(true);
          }
       });
+      console.log("-- F myFavorites CARD: ", myFavorites);
+
+      // return () => {
+      //    dispatch(filterCards("Todos"));
+      //    console.log("LIMPIO FILTRO CARD");
+      // };
    }, [myFavorites]);
 
    const handleClick = () => {

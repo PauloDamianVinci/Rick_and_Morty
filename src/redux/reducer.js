@@ -2,30 +2,39 @@ import { ADD_FAV, REMOVE_FAV, RESET, FILTER, ORDER } from "../redux/actions";
 
 const initialState = {
     myFavorites: [],
+    allCharacters: [],
 }
 
-
-//const rootReducer = (state = initialState, action) => {
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_FAV:
-            return { ...state, myFavorites: [...state.myFavorites, payload] };
+            const updatedAllCharacters = [...state.allCharacters, payload];
+            return { ...state, myFavorites: updatedAllCharacters, allCharacters: updatedAllCharacters };
         case REMOVE_FAV:
-            // const newCharacters = { ...state.characters };
-            // delete newCharacters[action.payload.id];
-            // return { ...state, characters: newCharacters };
+            const updatedMyFavorites = state.myFavorites.filter(
+                (char) => char.id !== Number(payload)
+            );
+            const updatedAllChars = state.allCharacters.filter(
+                (char) => char.id !== Number(payload)
+            );
             return {
                 ...state,
-                myFavorites: state.myFavorites.filter(
-                    (char) => char.id !== Number(payload)
-                ),
+                myFavorites: updatedMyFavorites,
+                allCharacters: updatedAllChars,
             };
         // case GET_FAV:
         //     return { ...state, myFavorites: state.myFavorites };
         case RESET:
-            return { myFavorites: [] };
+            return { myFavorites: [], allCharacters: [], };
         case FILTER:
-            return { ...state };
+            if (payload === "Todos") {
+                return { ...state, myFavorites: state.allCharacters };
+            } else {
+                const filteredCharacters = state.allCharacters.filter(
+                    (char) => char.gender === payload
+                );
+                return { ...state, myFavorites: filteredCharacters };
+            }
         case ORDER:
             return { ...state };
         default:
