@@ -20,13 +20,3 @@
         flex-direction: column;
     }
 }
-
-.button:hover {
-    background: #2E779A;
-    background: -moz-linear-gradient(#2E779A 0%, #2E779A 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2E779A), color-stop(100%, #2E779A));
-    background: -webkit-linear-gradient(#2E779A 0%, #2E779A 100%);
-    background: linear-gradient(#2E779A 0%, #2E779A 100%);
-    color: #ffffff;
-    transition: 0.7s;
-}

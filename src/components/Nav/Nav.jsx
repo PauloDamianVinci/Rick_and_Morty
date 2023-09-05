@@ -1,17 +1,11 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import style from "./Nav.module.css";
-import { useState } from "react";
 
 let { container, button } = style;
 
 const Nav = (props) => {
     const { onSearch, logout } = props;
-    const [activeButton, setActiveButton] = useState(null);
-
-    const handleButtonClick = (buttonName) => {
-        setActiveButton(buttonName);
-    };
     return (
         <div className={container}>
             <Link to="/home">

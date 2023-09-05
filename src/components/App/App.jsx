@@ -73,9 +73,17 @@ const App = () => {
   const onClose = (id) => {
     // Cierro una card:
     console.log("Llega onClose id desde App", id);
-    const filteredCharacters = characters.filter(character => character.id !== parseInt(id));
+    const filteredCharacters = characters.filter(character => character.id !== Number(id));
     setCharacters(filteredCharacters);
   }
+
+  // const onClose = (id) => {
+  //   setCharacters(
+  //     characters.filter((char) => {
+  //       return char.id !== Number(id);
+  //     })
+  //   );
+  // };
 
   if (location.pathname === PATHROUTES.ROOT) {
     return (

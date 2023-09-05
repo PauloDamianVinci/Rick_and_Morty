@@ -1,23 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFav } from "../../redux/actions.js";
 
 import Card from "../Card/Card.jsx";
 import style from "./Favorites.module.css";
 
-const Favorites = (props) => {
-    const dispatch = useDispatch();
+const Favorites = () => {
     const myFavorites = useSelector((state) => state.myFavorites);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        mapStateToProps();
         setIsLoading(false);
     }, []);
-
-    const mapStateToProps = () => {
-        dispatch(getFav());
-    }
 
     return (
         <div className={style.container}>
@@ -34,6 +27,7 @@ const Favorites = (props) => {
                         gender={character.gender}
                         origin={character.origin?.name}
                         image={character.image}
+                        originHome={false}
                     />
                 ))
             ) : null}
