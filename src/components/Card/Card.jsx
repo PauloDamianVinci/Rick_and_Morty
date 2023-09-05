@@ -26,6 +26,7 @@ const Card = (props) => {
       });
       console.log("-- F myFavorites CARD: ", myFavorites);
 
+      // Intenté refrescar el filtro a "Todos" antes de descargar el componente pero no me anduvo:
       // return () => {
       //    dispatch(filterCards("Todos"));
       //    console.log("LIMPIO FILTRO CARD");

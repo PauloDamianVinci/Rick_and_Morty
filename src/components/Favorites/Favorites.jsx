@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterCards } from "../../redux/actions";
+import { filterCards, orderCards } from "../../redux/actions";
 import Card from "../Card/Card.jsx";
 import style from "./Favorites.module.css";
 let { container, containerFiltros, containerCards } = style;
@@ -19,9 +19,11 @@ const Favorites = () => {
     }, []);
 
     const handleOrder = (e) => {
-        //        setSortOrder(e.target.value);
-        //       dispatch(orderCards(e.target.value));
-        setAux(!aux);
+        setSortOrder(e.target.value);
+        console.log("-I ORDER ->> ", sortOrder, myFavorites);
+        dispatch(orderCards(e.target.value));
+        setAux(!aux); // para qué es???
+        console.log("-F ORDER ", myFavorites);
     };
 
     const handleFilter = (e) => {

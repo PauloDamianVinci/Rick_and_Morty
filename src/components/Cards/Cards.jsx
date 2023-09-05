@@ -11,7 +11,7 @@ const Cards = (props) => {
    const dispatch = useDispatch();
 
    console.log("-----I----- characters CARDS: ", characters);
-   dispatch(filterCards("Todos")); // limpio filtro para que muestre todas las cards en home
+   dispatch(filterCards("Todos")); // limpio filtro para que muestre todas las cards en home. Quise hacerlo en el useEffect pero no anduvo
    console.log("----F------ characters CARDS: ", characters);
 
 

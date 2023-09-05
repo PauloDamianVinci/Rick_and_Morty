@@ -36,7 +36,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 return { ...state, myFavorites: filteredCharacters };
             }
         case ORDER:
-            return { ...state };
+            const orderDirection = payload === "A" ? 1 : payload === "D" ? -1 : 0;
+            const orderedFavorites = [...state.myFavorites].sort((a, b) => (a.id - b.id) * orderDirection);
+            return { ...state, myFavorites: orderedFavorites };
         default:
             return { ...state };
     }
