@@ -34,7 +34,6 @@ const Favorites = (props) => {
                         gender={character.gender}
                         origin={character.origin?.name}
                         image={character.image}
-                        originHome={false}
                     />
                 ))
             ) : null}

@@ -4,13 +4,12 @@ const initialState = {
     myFavorites: [],
 }
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_FAV:
-            return { ...state, myFavorites: state.myFavorites };
+
+//const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, { type, payload }) => {
+    switch (type) {
         case ADD_FAV:
-            //return { ...state, characters: { ...state.characters, [action.payload.id]: action.payload } };
-            return { ...state, myFavorites: [...state.myFavorites, action.payload] };
+            return { ...state, myFavorites: [...state.myFavorites, payload] };
         case REMOVE_FAV:
             // const newCharacters = { ...state.characters };
             // delete newCharacters[action.payload.id];
@@ -18,9 +17,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 myFavorites: state.myFavorites.filter(
-                    (id) => id.id !== action.payload.id
+                    (char) => char.id !== Number(payload)
                 ),
             };
+        case GET_FAV:
+            return { ...state, myFavorites: state.myFavorites };
         case RESET:
             return { myFavorites: [] };
         default:

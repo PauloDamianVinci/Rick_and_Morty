@@ -5,4 +5,6 @@ const PATHROUTES = {
     DETAIL: '/detail/:id',
     FAVORITES: '/favorites',
 }
+const PATHPROTECTEDROUTES = {
+}
 export default PATHROUTES;

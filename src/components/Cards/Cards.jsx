@@ -18,7 +18,6 @@ const Cards = (props) => {
                   origin={char.origin.name}
                   image={char.image}
                   onClose={onClose}
-                  originHome={true}
                />
             );
          })}
