@@ -1,8 +1,9 @@
 import style from "./Form.module.css";
 import { useState } from "react";
 import Validation from "../../functions/validation";
+import { PATHVAR } from "../../helpers/PathRoutes";
 
-let { container, emailDiv, passDiv, button, datosDiv, img, containerImg, errValid, okValid, errores } = style;
+let { container, emailDiv, passDiv, datosDiv, img, containerImg, errores, bn31, bn31span } = style;
 
 const Form = (props) => {
     const { login } = props;
@@ -32,7 +33,7 @@ const Form = (props) => {
         <form className={container} onSubmit={handleSubmit}>
             <div className={datosDiv}>
                 <div className={containerImg}>
-                    <img className={img} src={"/src/assets/RMLogin.jpg"} alt="" />
+                    <img className={img} src={PATHVAR.IMGLOGIN} alt="" />
                 </div>
                 <div className={emailDiv}>
                     <label htmlFor="mail">Email:</label>
@@ -69,7 +70,9 @@ const Form = (props) => {
                     )
                     }
                 </div>
-                <button className={button} type="submit">Submit</button>
+                <p className={bn31} href="/">
+                    <button className={bn31span} type="submit">Submit</button>
+                </p>
             </div>
         </form>
     )

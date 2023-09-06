@@ -14,7 +14,8 @@ import { useDispatch } from "react-redux";
 import { reset } from "../../redux/actions";
 // Otros:
 import axios from 'axios';
-import PATHROUTES from "../../helpers/PathRoutes";
+import { PATHROUTES, PATHPROTECTEDROUTES } from "../../helpers/PathRoutes";
+
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -28,7 +29,11 @@ const App = () => {
 
   useEffect(() => {
     // Sin login no permito navegar por las páginas:
+
     !access && navigate(`${PATHROUTES.ROOT}`);
+
+
+
   }, [access]);
 
   const login = (userData) => {

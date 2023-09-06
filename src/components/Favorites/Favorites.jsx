@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterCards, orderCards } from "../../redux/actions";
 import Card from "../Card/Card.jsx";
 import style from "./Favorites.module.css";
-let { container, containerFiltros, containerCards } = style;
+let { container, containerFiltros, containerCards, label } = style;
 
 const Favorites = () => {
     const myFavorites = useSelector((state) => state.myFavorites);
@@ -38,15 +38,16 @@ const Favorites = () => {
         <div>
             <div className={container}>
                 <div className={containerFiltros}>
-                    <div className={containerFiltros}>
-                        <label>Ordenar por:</label>
+                    <div className={label}>
+                        <label>Ordenar por: </label>
                         <select value={sortOrder} onChange={handleOrder}>
                             <option value="A">Ascendente</option>
                             <option value="D">Descendente</option>
                         </select>
                     </div>
-                    <div className={containerFiltros}>
-                        <label>Filtrar por género:</label>
+                    {/* <span></span> */}
+                    <div className={label}>
+                        <label>Filtrar por género: </label>
                         <select value={filterGender} onChange={handleFilter}>
                             <option value="Todos">Todos</option>
                             <option value="Male">Male</option>

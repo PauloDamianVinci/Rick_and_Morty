@@ -37,6 +37,8 @@
     padding-right: 10px;
     padding-bottom: 30px;
     color: antiquewhite;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .passDiv {
@@ -47,15 +49,17 @@
     padding-right: 10px;
     padding-bottom: 30px;
     color: antiquewhite;
+    min-width: 200px;
+    max-width: 200px;
 }
 
-.button {
+/* .button {
     background-color: rgb(35, 170, 58);
     border-radius: 5px;
     width: 80px;
     height: 30px;
     margin: 10px;
-}
+} */
 
 .img {
     max-width: 60%;
@@ -74,4 +78,43 @@
 
 .errores {
     color: rgb(203, 206, 32);
+}
+
+.bn31 {
+    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    border-radius: 40px;
+    box-sizing: border-box;
+    color: #00a84f;
+    display: block;
+    height: 50px;
+    font-size: 1.4em;
+    padding: 4px;
+    position: relative;
+    text-decoration: none;
+    width: 7em;
+    z-index: 2;
+    margin: 10px;
+
+}
+
+.bn31:hover {
+    color: #fff;
+}
+
+.bn31 .bn31span {
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    transition: background 0.5s ease;
+    width: 100%;
+    color: #00a84f;
+    font-size: 16px;
+}
+
+.bn31:hover .bn31span {
+    background: transparent;
+    color: #fff;
 }
