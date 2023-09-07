@@ -3,6 +3,7 @@ import { addFav, removeFav, filterCards } from "../../redux/actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Card.module.css";
+import { PATHROUTES } from "../../helpers/PathRoutes";
 let { buttonFav, container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features } = style;
 
 const Card = (props) => {
@@ -47,11 +48,11 @@ const Card = (props) => {
                   <button className={buttonFav} onClick={handleFavorite}>🤍</button>
                )
             }
-            {pathname !== "/favorites" && (
+            {pathname !== PATHROUTES.FAVORITES && (
                <button className={buttonClose} onClick={handleClick}>X</button>
             )}
             <img className={img} src={image} alt="" />
-            <Link to={`/detail/${id}`} >
+            <Link to={`${PATHROUTES.DETAILBASE}/${id}`} >
                <h2 className={nameC}>{name}</h2>
             </Link>
          </div>
