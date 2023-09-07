@@ -20,19 +20,18 @@ const Favorites = () => {
 
     const handleOrder = (e) => {
         setSortOrder(e.target.value);
-        console.log("-I ORDER ->> ", sortOrder, myFavorites);
+        //console.log("-I ORDER ->> ", sortOrder, myFavorites);
         dispatch(orderCards(e.target.value));
-        setAux(!aux); // para qué es???
-        console.log("-F ORDER ", myFavorites);
+        setAux(!aux); // es para forzar el refresco del DOM
+        //console.log("-F ORDER ", myFavorites);
     };
 
     const handleFilter = (e) => {
         setFilterGender(e.target.value);
-        console.log("-I myFavorites FAV filter: ", myFavorites);
+        //console.log("-I myFavorites FAV filter: ", myFavorites);
         dispatch(filterCards(e.target.value));
-        console.log("-F myFavorites FAV filter: ", myFavorites);
+        //console.log("-F myFavorites FAV filter: ", myFavorites);
     };
-
 
     return (
         <div>

@@ -3,7 +3,6 @@ import { ADD_FAV, REMOVE_FAV, RESET, FILTER, ORDER } from "../redux/actions";
 const initialState = {
     myFavorites: [],
     allCharacters: [],
-    access: false,
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
