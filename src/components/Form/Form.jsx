@@ -20,7 +20,6 @@ const Form = (props) => {
     const handleChange = (e) => {
         const property = e.target.name;
         const value = e.target.value;
-        // Validation({ ...userData, [property]: value }, setErrors, errors, property);
         setUserData({ ...userData, [property]: value })
         setErrors(Validation({ ...userData, [e.target.name]: e.target.value }))
     }

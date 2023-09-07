@@ -45,7 +45,6 @@ const Favorites = () => {
                             <option value="D">Descendente</option>
                         </select>
                     </div>
-                    {/* <span></span> */}
                     <div className={label}>
                         <label>Filtrar por género: </label>
                         <select value={filterGender} onChange={handleFilter}>
@@ -58,7 +57,6 @@ const Favorites = () => {
                     </div>
                 </div>
             </div>
-            {/* const { id, name, species, gender, image, onClose } = props; */}
             <div className={containerCards}>
                 {
                     isLoading ? (
@@ -69,7 +67,6 @@ const Favorites = () => {
                                 id={character.id}
                                 key={character.id}
                                 name={character.name}
-                                // status={character.status}
                                 species={character.species}
                                 gender={character.gender}
                                 origin={character.origin?.name}

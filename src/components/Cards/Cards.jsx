@@ -1,10 +1,7 @@
 import Card from "../Card/Card.jsx";
 import style from "./Cards.module.css";
-
-
 import { filterCards } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-
 
 const Cards = (props) => {
    const { characters, onClose } = props;
@@ -23,7 +20,6 @@ const Cards = (props) => {
                   id={char.id}
                   key={char.id}
                   name={char.name}
-                  // status={char.status}
                   species={char.species}
                   gender={char.gender}
                   origin={char.origin.name}

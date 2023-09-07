@@ -1,6 +1,5 @@
 a {
     text-decoration: none;
-    /* Elimina el subrayado de todos los enlaces */
 }
 
 .container {
@@ -57,7 +56,6 @@ a {
     font-size: 1.4em;
     padding: 4px;
     position: relative;
-    text-decoration: none;
     width: 4em;
     z-index: 2;
     margin: 10px;

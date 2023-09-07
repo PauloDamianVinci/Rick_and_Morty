@@ -99,12 +99,7 @@ const App = () => {
             <Route path={PATHROUTES.ABOUT} element={<About />} />
             <Route path={PATHROUTES.DETAIL} element={<Detail />} />
             <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
-
-
             <Route path="*" element={<ErrorView />} />
-
-
-
           </Routes>
         </div>
       </div>);
@@ -112,10 +107,3 @@ const App = () => {
 }
 export default App;
 
-//<button className={`${optActive === 2 ? ButtonAct : Button}`} onClick={() => handleActive(2)}>About</button>
-
-
-// if (userData.password === PASSWORD && userData.mail === EMAIL) {
-//   setAccess(true);
-//   navigate(`${PATHROUTES.HOME}`);
-// }
