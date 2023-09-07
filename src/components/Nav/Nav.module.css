@@ -21,11 +21,11 @@ a {
     }
 }
 
-.bn31 {
-    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+.contButton {
+    background-image: linear-gradient(to right, #006175 0%, #0ea591 100%);
     border-radius: 40px;
     box-sizing: border-box;
-    color: #00a84f;
+    color: #0ea591;
     display: block;
     height: 50px;
     font-size: 1.4em;
@@ -38,11 +38,11 @@ a {
 
 }
 
-.bn31:hover {
+.contButton:hover {
     color: #fff;
 }
 
-.bn31 .bn31span {
+.Button {
     align-items: center;
     background: #0e0e10;
     border-radius: 40px;
@@ -51,11 +51,24 @@ a {
     height: 100%;
     transition: background 0.5s ease;
     width: 100%;
-    color: #00a84f;
+    color: #0ea591;
     font-size: 16px;
 }
 
-.bn31:hover .bn31span {
+.ButtonAct {
+    align-items: center;
+    background: #0ea591;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    transition: background 0.5s ease;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+}
+
+.contButton:hover .Button {
     background: transparent;
     color: #fff;
 }

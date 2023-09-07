@@ -3,7 +3,7 @@ import { useState } from "react";
 import Validation from "../../functions/validation";
 import { PATHVAR } from "../../helpers/PathRoutes";
 
-let { container, emailDiv, passDiv, datosDiv, img, containerImg, errores, bn31, bn31span } = style;
+let { container, emailDiv, passDiv, datosDiv, img, containerImg, errores, contButton, button } = style;
 
 const Form = (props) => {
     const { login } = props;
@@ -70,8 +70,8 @@ const Form = (props) => {
                     )
                     }
                 </div>
-                <p className={bn31} href="/">
-                    <button className={bn31span} type="submit">Submit</button>
+                <p className={contButton} href="/">
+                    <button className={button} type="submit">Submit</button>
                 </p>
             </div>
         </form>

@@ -2,36 +2,41 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import style from "./Nav.module.css";
 import { PATHROUTES } from "../../helpers/PathRoutes";
+import { useState, useEffect } from "react";
 
-let { container, bn31, bn31span } = style;
+let { container, contButton, Button, ButtonAct } = style;
 
 const Nav = (props) => {
+
+    const [optActive, setOptActive] = useState(1);
+
+    const handleActive = (index) => {
+        setOptActive(index);
+        console.log("---PRESS ", index);
+    };
+
     const { onSearch, logout } = props;
     return (
         <div className={container}>
             <Link to={PATHROUTES.HOME}>
-                {/* <button className={button} >Home</button> */}
-                <p className={bn31} href="/">
-                    <button className={bn31span}>Home</button>
+                <p className={contButton} href="/">
+                    <button className={`${optActive === 1 ? ButtonAct : Button}`} onClick={() => handleActive(1)}>Home</button>
                 </p>
             </Link>
             <Link to={PATHROUTES.ABOUT}>
-                {/* <button className={button} >About</button> */}
-                <p className={bn31} href="/">
-                    <button className={bn31span}>About</button>
+                <p className={contButton} href="/">
+                    <button className={`${optActive === 2 ? ButtonAct : Button}`} onClick={() => handleActive(2)}>About</button>
                 </p>
 
             </Link>
             <Link to={PATHROUTES.FAVORITES}>
-                {/* <button className={button} >Favoritos</button> */}
-                <p className={bn31} href="/">
-                    <button className={bn31span}>Favoritos</button>
+                <p className={contButton} href="/">
+                    <button className={`${optActive === 3 ? ButtonAct : Button}`} onClick={() => handleActive(3)}>Favoritos</button>
                 </p>
 
             </Link>
-            {/* <button className={button} onClick={() => { logout(); }}>Logout</button> */}
-            <p className={bn31} href="/">
-                <button className={bn31span} onClick={() => { logout(); }}>Logout</button>
+            <p className={contButton} href="/">
+                <button className={Button} onClick={() => { logout(); }}>Logout</button>
             </p>
             <SearchBar onSearch={onSearch} />
         </div >

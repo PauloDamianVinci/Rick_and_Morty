@@ -37,13 +37,13 @@ const Card = (props) => {
    const handleClick = () => {
       onClose(id);
    };
-
+   //tecla Windows + "."" para desplegar la lista de iconos.
    return (
       <div className={container}>
          <div className={containerButtonImg}>
             {
                isFav ? (
-                  <button className={buttonFav} onClick={handleFavorite}>💖</button>
+                  <button className={buttonFav} onClick={handleFavorite}>💚</button>
                ) : (
                   <button className={buttonFav} onClick={handleFavorite}>🤍</button>
                )

@@ -29,11 +29,7 @@ const App = () => {
 
   useEffect(() => {
     // Sin login no permito navegar por las páginas:
-
     !access && navigate(`${PATHROUTES.ROOT}`);
-
-
-
   }, [access]);
 
   const login = (userData) => {
