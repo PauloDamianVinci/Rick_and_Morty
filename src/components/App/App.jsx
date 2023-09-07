@@ -88,20 +88,16 @@ const App = () => {
   } else {
     return (
       <div>
-        {isLoading ? (
-          <p>Cargando...</p>
-        ) : (
-          <div>
-            <Nav onSearch={onSearch} logout={logout} />
-            <Routes>
-              <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
-              <Route path={PATHROUTES.ABOUT} element={<About />} />
-              <Route path={PATHROUTES.DETAIL} element={<Detail />} />
-              <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-          </div>
-        )}
+        <div>
+          <Nav onSearch={onSearch} logout={logout} />
+          <Routes>
+            <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
+            <Route path={PATHROUTES.ABOUT} element={<About />} />
+            <Route path={PATHROUTES.DETAIL} element={<Detail />} />
+            <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </div>
       </div>);
   }
 }
