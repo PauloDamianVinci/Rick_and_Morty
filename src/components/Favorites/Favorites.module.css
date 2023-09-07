@@ -7,6 +7,7 @@
     color: #e2ece7;
     flex-wrap: wrap;
     gap: 20px;
+    padding-bottom: 6px;
 }
 
 .containerFiltros {

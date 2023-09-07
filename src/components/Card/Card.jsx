@@ -42,7 +42,7 @@ const Card = (props) => {
          <div className={containerButtonImg}>
             {
                isFav ? (
-                  <button className={buttonFav} onClick={handleFavorite}>❤️</button>
+                  <button className={buttonFav} onClick={handleFavorite}>💖</button>
                ) : (
                   <button className={buttonFav} onClick={handleFavorite}>🤍</button>
                )
