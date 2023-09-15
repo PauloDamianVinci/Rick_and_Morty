@@ -3,7 +3,7 @@ import { useState } from "react";
 let { input, cuadroTexto, container, contButton, Button } = style;
 
 const SearchBar = (props) => {
-   const [id, setId] = useState("");
+   const [id, setId] = useState(0);
    const { onSearch, showSearch } = props;
    const randomId = Math.floor(Math.random() * 826) + 1;
 
@@ -17,7 +17,10 @@ const SearchBar = (props) => {
          {
             showSearch ? (
                <div className={cuadroTexto}>
-                  <input type="search" placeholder="Id" className={input} name="srch" onChange={handleChange} value={id} />
+                  {/* <input type="search" placeholder="Id" className={input} name="srch" onChange={handleChange} value={id} /> */}
+
+                  <input type="number" className={input} onChange={handleChange} value={id} id="quantity" min="0" />
+
                   <p className={contButton} href="/">
                      <button className={Button} onClick={() => { onSearch(id); }}>Agregar</button>
                   </p>
