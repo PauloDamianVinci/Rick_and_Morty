@@ -12,7 +12,6 @@ const Detail = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        //axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
         axios(`${PATHROUTES.RMCHARS}/${id}`).then(({ data }) => {
             if (data.name) {
                 setCharacter(data);

@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require('fs');
 const data = require('./utils/data.js');
+const PORT = 3001;
 
 http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,4 +35,4 @@ http.createServer((req, res) => {
     res.writeHead(404);
     res.end();
 })
-    .listen(3001, "localhost");
+    .listen(PORT, "localhost");

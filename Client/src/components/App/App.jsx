@@ -16,7 +16,6 @@ import { reset } from "../../redux/actions";
 import axios from 'axios';
 import { PATHROUTES, PATHPROTECTEDROUTES } from "../../helpers/PathRoutes";
 
-
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
@@ -26,7 +25,6 @@ const App = () => {
   const PASSWORD = "123456";
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-
 
   useEffect(() => {
     // Sin login no permito navegar por las páginas:
@@ -56,9 +54,12 @@ const App = () => {
 
   const onSearch = (id) => {
     setIsLoading(true);
-    //axios(`https://rickandmortyapi.com/api/character/${id}`)
-    axios(`${PATHROUTES.RMCHARS}/${id}`)
-      //RMCHARS
+    // console.log("->>>>");
+    // console.log("->>>>>", process.env.META_URL_ENDPOINT);
+    // console.log("->>>>.");
+
+    axios(`${PATHROUTES.RMCHARS}/${id}`) // probar META_URL_ENDPOINT. También en detail
+      //axios(`${import.meta.env.META}/${id}`) // probar META_URL_ENDPOINT. También en detail
       .then(({ data }) => {
         if (data.name) {
           // verifico repeticiones:
