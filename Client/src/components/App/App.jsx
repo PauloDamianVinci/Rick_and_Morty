@@ -59,7 +59,6 @@ const App = () => {
     // console.log("->>>>.");
 
     axios(`${PATHROUTES.RMCHARS}/${id}`) // probar META_URL_ENDPOINT. También en detail
-      //axios(`${import.meta.env.META}/${id}`) // probar META_URL_ENDPOINT. También en detail
       .then(({ data }) => {
         if (data.name) {
           // verifico repeticiones:
