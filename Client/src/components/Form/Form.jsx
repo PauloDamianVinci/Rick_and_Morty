@@ -1,7 +1,7 @@
 import style from "./Form.module.css";
 import { useState } from "react";
 import Validation from "../../functions/validation";
-import { PATHVAR } from "../../helpers/PathRoutes";
+import { PATHVAR } from "../../config/config";
 
 let { container, emailDiv, passDiv, datosDiv, img, containerImg, errores, contButton, button } = style;
 

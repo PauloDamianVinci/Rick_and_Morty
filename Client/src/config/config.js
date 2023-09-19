@@ -5,17 +5,14 @@ const PATHROUTES = {
     DETAIL: '/detail/:id',
     DETAILBASE: '/detail',
     FAVORITES: '/favorites',
-    // RMCHARS: 'https://rickandmortyapi.com/api/character',
     RMCHARS: 'http://localhost:3001/rickandmorty/character',
-}
-
-// Paths que no necesitan ser protegidos:
-const PATHPROTECTEDROUTES = {
-    ERROR: '/error',
 }
 
 const PATHVAR = {
     IMGLOGIN: "/src/assets/RM_Main_Logo.png",
+    IMG_ESPERA: "/src/assets/portal-rick-and-morty.gif",
+    IMG_ERR_DETAIL: "/src/assets/errorDetail.jpeg",
 }
 
-export { PATHROUTES, PATHPROTECTEDROUTES, PATHVAR };
+export { PATHROUTES, PATHVAR };
+

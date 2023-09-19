@@ -14,7 +14,8 @@ import { useDispatch } from "react-redux";
 import { reset } from "../../redux/actions";
 // Otros:
 import axios from 'axios';
-import { PATHROUTES, PATHPROTECTEDROUTES } from "../../helpers/PathRoutes";
+import { PATHROUTES } from "../../config/config";
+
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -28,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
     // Sin login no permito navegar por las páginas:
-    console.log("CAMBIO ACCESO: ", access);
+    //console.log("CAMBIO ACCESO: ", access);
     !access && navigate(`${PATHROUTES.ROOT}`);
   }, [access]);
 
@@ -42,7 +43,7 @@ const App = () => {
 
   const logout = () => {
     // Quito el acceso:
-    console.log("CAMBIO ACCESO FALSE");
+    //console.log("CAMBIO ACCESO FALSE");
     setAccess(false);
     // elimino tarjetas:
     setCharacters([]);
@@ -54,13 +55,10 @@ const App = () => {
 
   const onSearch = (id) => {
     setIsLoading(true);
-    // console.log("->>>>");
-    // console.log("->>>>>", process.env.META_URL_ENDPOINT);
-    // console.log("->>>>.");
-
-    axios(`${PATHROUTES.RMCHARS}/${id}`) // probar META_URL_ENDPOINT. También en detail
+    axios(`${PATHROUTES.RMCHARS}/${id}`)
       .then(({ data }) => {
         if (data.name) {
+          //console.log("Resultado id ", id, ": ", data);
           // verifico repeticiones:
           const ids = characters.map(el => el.id);
           if (!ids.includes(parseInt(id))) {
@@ -69,17 +67,23 @@ const App = () => {
             window.alert('¡Ese personaje ya existe!');
           }
         } else {
+          //console.log("No se encontré personaje con id ", id);
           window.alert('¡No hay personajes con este ID!');
         }
       })
       .finally(() => {
         setIsLoading(false);
+      })
+
+      .catch((error) => {
+        //console.log("Error para id ", id, ":", error.message); //usar error.response.status para sólo el nro.
+        window.alert(error.message);
       });
-  }
+  };
 
   const onClose = (id) => {
     // Cierro una card:
-    console.log("Llega onClose id desde App", id);
+    //console.log("Llega onClose id desde App", id);
     const filteredCharacters = characters.filter(character => character.id !== Number(id));
     setCharacters(filteredCharacters);
   }

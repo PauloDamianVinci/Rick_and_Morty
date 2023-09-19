@@ -1,33 +1,51 @@
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { PATHROUTES, PATHVAR } from "../../config/config";
 import style from "./Detail.module.css";
-import { PATHROUTES } from "../../helpers/PathRoutes";
 
-let { container, containerImg, img, containerDetails, features, featuresTitle } = style;
+let { container, containerImg, img, containerDetails, features, featuresTitle, imgCargando, containerImgCargando } = style;
 
 const Detail = () => {
     const { id } = useParams();
     const [character, setCharacter] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const charError = {
+        name: 'Detalles no encontrados',
+        status: 'not found',
+        gender: 'not found',
+        species: 'not found',
+        origin: { name: 'not found', },
+        image: 'not found'
+    };
 
     useEffect(() => {
-        axios(`${PATHROUTES.RMCHARS}/${id}`).then(({ data }) => {
-            if (data.name) {
-                setCharacter(data);
-            } else {
-                window.alert('No hay personajes con ese ID');
-            }
-        });
-        setIsLoading(false);
-        return setCharacter({});
-
+        console.log("useEffect")
+        axios(`${PATHROUTES.RMCHARS}/${id}`)
+            .then(({ data }) => {
+                if (data.name) {
+                    setCharacter(data);
+                } else {
+                    setCharacter(charError);
+                    window.alert('No se encontraron detalles para el personaje');
+                }
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                charError.name = error.message; //usar error.response.status para sólo el nro.
+                charError.image = PATHVAR.IMG_ERR_DETAIL;
+                setCharacter(charError);
+            });
     }, [id]);
 
     return (
         <div className={container}>
             {isLoading ? (
-                <p>Cargando...</p>
+                <div className={containerImgCargando}>
+                    <img className={imgCargando} src={PATHVAR.IMG_ESPERA} alt="" />
+                </div>
             ) : character ? (
                 <div className={container}>
                     <div className={containerDetails}>
@@ -47,4 +65,4 @@ const Detail = () => {
     );
 }
 
-export default Detail
+export default Detail;

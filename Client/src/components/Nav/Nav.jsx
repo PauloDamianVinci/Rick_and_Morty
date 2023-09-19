@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
-import { PATHROUTES } from "../../helpers/PathRoutes";
+import { PATHROUTES } from "../../config/config";
 import { useState } from "react";
 import style from "./Nav.module.css";
 

@@ -5,7 +5,7 @@ export const FILTER = "FILTER";
 export const ORDER = "ORDER";
 
 export const addFav = (character) => {
-    //console.log('Action: ADD_FAV');
+    ////console.log('Action: ADD_FAV');
     return { type: ADD_FAV, payload: character };
 };
 
@@ -15,17 +15,17 @@ export const removeFav = (id) => {
 };
 
 export const reset = () => {
-    //console.log('Action: RESET');
+    ////console.log('Action: RESET');
     return { type: RESET };
 };
 
 export const filterCards = (criteria) => {
-    //console.log('Action: filterCards');
+    ////console.log('Action: filterCards');
     return { type: FILTER, payload: criteria };
 };
 
 export const orderCards = (criteria) => {
-    //console.log('Action: orderCards');
+    ////console.log('Action: orderCards');
     return { type: ORDER, payload: criteria };
 };
 

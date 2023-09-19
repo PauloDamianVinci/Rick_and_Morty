@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterCards, orderCards } from "../../redux/actions";
 import Card from "../Card/Card.jsx";
+import { PATHVAR } from "../../config/config";
 import style from "./Favorites.module.css";
 let { container, containerFiltros, containerCards, label } = style;
 
@@ -14,24 +15,24 @@ const Favorites = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("myFavorites FAV useEff: ", myFavorites);
+        //console.log("myFavorites FAV useEff: ", myFavorites);
         // USAR UN DISPATCH!!!!!!
         setIsLoading(false);
     }, []);
 
     const handleOrder = (e) => {
         setSortOrder(e.target.value);
-        //console.log("-I ORDER ->> ", sortOrder, myFavorites);
+        ////console.log("-I ORDER ->> ", sortOrder, myFavorites);
         dispatch(orderCards(e.target.value));
         setAux(!aux); // es para forzar el refresco del DOM
-        //console.log("-F ORDER ", myFavorites);
+        ////console.log("-F ORDER ", myFavorites);
     };
 
     const handleFilter = (e) => {
         setFilterGender(e.target.value);
-        //console.log("-I myFavorites FAV filter: ", myFavorites);
+        ////console.log("-I myFavorites FAV filter: ", myFavorites);
         dispatch(filterCards(e.target.value));
-        //console.log("-F myFavorites FAV filter: ", myFavorites);
+        ////console.log("-F myFavorites FAV filter: ", myFavorites);
     };
 
     return (
@@ -61,6 +62,7 @@ const Favorites = () => {
                 {
                     isLoading ? (
                         <p>Cargando...</p>
+
                     ) : myFavorites ? (
                         myFavorites.map((character) => (
                             <Card

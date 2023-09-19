@@ -14,12 +14,10 @@ http.createServer((req, res) => {
         if (!isNaN(id)) {
             return getCharById(res, id);
         } else {
-            console.log('ID de personaje no válido');
             res.writeHead(400);
             return res.end();
         }
     }
-
     console.log('La URL no incluye /rickandmorty/character');
     res.writeHead(404);
     res.end();

@@ -11,16 +11,13 @@ const SearchBar = (props) => {
       setId(event.target.value);
    }
 
-   console.log("showSearch ", showSearch);
+   //console.log("showSearch ", showSearch);
    return (
       <div className={container}>
          {
             showSearch ? (
                <div className={cuadroTexto}>
-                  {/* <input type="search" placeholder="Id" className={input} name="srch" onChange={handleChange} value={id} /> */}
-
                   <input type="number" className={input} onChange={handleChange} value={id} id="quantity" min="0" />
-
                   <p className={contButton} href="/">
                      <button className={Button} onClick={() => { onSearch(id); }}>Agregar</button>
                   </p>
