@@ -2,8 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import { addFav, removeFav, filterCards } from "../../redux/actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./Card.module.css";
 import { PATHROUTES, PATHVAR } from "../../config/config";
+import style from "./Card.module.css";
 let { buttonFav, container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features, containerImgCargando, imgCargando, idC, featuresCard } = style;
 
 const Card = (props) => {

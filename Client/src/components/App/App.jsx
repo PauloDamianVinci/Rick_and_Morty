@@ -37,14 +37,12 @@ const App = () => {
   const login = (userData) => {
     if (userData.password === PASSWORD && userData.mail === EMAIL) {
       setAccess(true);
-
       navigate(`${PATHROUTES.HOME}`);
     }
   }
 
   const logout = () => {
     // Quito el acceso:
-    //console.log("CAMBIO ACCESO FALSE");
     setAccess(false);
     // elimino tarjetas:
     setCharacters([]);
@@ -55,7 +53,7 @@ const App = () => {
   }
 
   const onSearch = (id, mostrarMensajes) => {
-    if (isLoading) return null; // para no ingresar
+    if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);
     axios.get(`${PATHROUTES.RMCHARS}/${id}`)
       .then(({ data }) => {
@@ -87,7 +85,6 @@ const App = () => {
 
   const onClose = (id) => {
     // Cierro una card:
-    //console.log("Llega onClose id desde App", id);
     const filteredCharacters = characters.filter(character => character.id !== Number(id));
     setCharacters(filteredCharacters);
   }

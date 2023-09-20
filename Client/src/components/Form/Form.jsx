@@ -32,7 +32,7 @@ const Form = (props) => {
         <form className={container} onSubmit={handleSubmit}>
             <div className={datosDiv}>
                 <div className={containerImg}>
-                    <img className={img} src={PATHVAR.IMGLOGIN} alt="" />
+                    <img className={img} src={PATHVAR.IMG_LOGIN} alt="" />
                 </div>
                 <div className={emailDiv}>
                     <label htmlFor="mail">Email:</label>

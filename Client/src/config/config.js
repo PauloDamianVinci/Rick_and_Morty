@@ -9,7 +9,7 @@ const PATHROUTES = {
 }
 
 const PATHVAR = {
-    IMGLOGIN: "/src/assets/RM_Main_Logo.png",
+    IMG_LOGIN: "/src/assets/RM_Main_Logo.png",
     IMG_ESPERA: "/src/assets/portal-rick-and-morty.gif",
     IMG_ERR_DETAIL: "/src/assets/errorDetail.jpeg",
     IMG_ABOUT: "/src/assets/About.jpg",

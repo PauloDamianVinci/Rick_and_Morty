@@ -20,7 +20,6 @@ const Detail = () => {
     };
 
     useEffect(() => {
-        //console.log("useEffect")
         axios(`${PATHROUTES.RMCHARS}/${id}`)
             .then(({ data }) => {
                 if (data.name) {

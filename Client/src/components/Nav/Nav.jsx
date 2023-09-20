@@ -1,3 +1,5 @@
+
+// DEJAR FIJA LA BARRA DE NAVEGACION
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { PATHROUTES } from "../../config/config";
@@ -20,7 +22,7 @@ const Nav = (props) => {
         <div className={container}>
             <p className={contButton}>
                 <Link to={PATHROUTES.HOME}>
-                    <button className={`${optActive === 1 ? ButtonAct : Button}`} onClick={() => handleActive(1)}>Home</button>
+                    <button className={`${optActive === 1 ? ButtonAct : Button}`} onClick={() => handleActive(1)}>Cards</button>
                 </Link>
             </p>
             <p className={contButton}>

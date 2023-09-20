@@ -11,6 +11,9 @@ a {
     padding-top: 0px;
     align-items: center;
 
+    /* position: fixed;
+    top: 0; */
+
 }
 
 @media (max-width: 500px) {

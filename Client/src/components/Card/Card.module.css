@@ -44,7 +44,7 @@
     background-color: rgb(15, 15, 15);
     color: #0ea591;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     height: 8%;
     width: 100%;
     top: 58%;
@@ -57,7 +57,7 @@
 .containerFeatures {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     color: antiquewhite;
     padding: 10px;
     background-color: rgba(15, 15, 15, 0.705);
@@ -74,7 +74,7 @@
     flex-direction: row;
     justify-content: space-around;
     color: antiquewhite;
-    /* background-color: rgba(15, 15, 15, 0.705); */
+    background-color: rgba(11, 90, 95, 0.199);
 }
 
 .containerImgCargando {
@@ -99,7 +99,7 @@
     border: 0px;
     width: 52px;
     height: 30px;
-    top: 50%;
+    top: 48%;
     left: 82%;
     text-align: center;
     border-radius: 50px;
