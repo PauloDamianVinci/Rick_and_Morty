@@ -39,30 +39,28 @@
     font-size: 24px;
 }
 
-
-
 .nameC {
     position: absolute;
-    background-color: rgba(15, 15, 15, 0.87);
+    background-color: rgb(15, 15, 15);
     color: #0ea591;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
-    width: 60%;
-    top: 80%;
-    left: 6%;
-    text-align: center;
-    border-radius: 50px;
+    font-size: 20px;
+    height: 8%;
+    width: 100%;
+    top: 58%;
+    left: 0%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .containerFeatures {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     color: antiquewhite;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(15, 15, 15, 0.705);
-
-    border: 2px solid #0ea591;
 }
 
 .features {
@@ -71,9 +69,16 @@
 
 }
 
+.featuresCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: antiquewhite;
+    /* background-color: rgba(15, 15, 15, 0.705); */
+}
+
 .containerImgCargando {
     background-color: rgba(223, 15, 15, 0);
-    /* background-color: rgba(209, 228, 233, 0.74); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,9 +86,6 @@
 }
 
 .imgCargando {
-
-    /* background-color: rgba(204, 85, 204, 0.836); */
-
     align-items: center;
     text-align: center;
     text-justify: auto;
@@ -91,13 +93,14 @@
 
 .idC {
     position: absolute;
-    /* background-color: rgba(223, 15, 15, 0); */
+    background-color: rgba(15, 15, 15, 0.705);
     color: #0ea591;
     font-weight: bold;
     border: 0px;
-    width: 40px;
+    width: 52px;
     height: 30px;
-    top: 95%;
-    left: 85%;
-    text-align: right;
+    top: 50%;
+    left: 82%;
+    text-align: center;
+    border-radius: 50px;
 }

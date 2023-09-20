@@ -6,10 +6,19 @@ import randomGenerator from "../../functions/randomGenerator";
 const SearchBar = (props) => {
    const [id, setId] = useState(0);
    const { onSearch, showSearch } = props;
-   const randomId = randomGenerator(826);
 
    const handleChange = (event) => {
       setId(event.target.value);
+   }
+
+   const handleSearch = (random, mostrarMensajes) => {
+      let idSearch = 0;
+      if (random) {
+         idSearch = randomGenerator(826);
+      } else {
+         idSearch = id;
+      }
+      onSearch(idSearch, mostrarMensajes);
    }
 
    return (
@@ -19,10 +28,10 @@ const SearchBar = (props) => {
                <div className={cuadroTexto}>
                   <input type="number" className={input} onChange={handleChange} value={id} id="quantity" min="0" />
                   <p className={contButton} href="/">
-                     <button className={Button} onClick={() => { onSearch(id, true); }}>Agregar</button>
+                     <button className={Button} onClick={() => { handleSearch(false, true); }}>Agregar</button>
                   </p>
                   <p className={contButton} href="/">
-                     <button className={Button} onClick={() => { onSearch(randomId, false); }}>Random</button>
+                     <button className={Button} onClick={() => { handleSearch(true, false); }}>Random</button>
                   </p>
                </div>
             ) : (

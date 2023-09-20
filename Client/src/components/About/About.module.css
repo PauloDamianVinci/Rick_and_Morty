@@ -1,18 +1,30 @@
 .container {
+    background-color: rgba(15, 15, 15, 0.705);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    max-width: 70%;
+    margin: 10%;
+}
+
+.containerImg {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: rgba(15, 15, 15, 0.705);
 }
 
-.element {
-    align-items: center;
-    text-align: center;
-    text-justify: auto;
+.img {
+    max-width: 20%;
+    border-radius: 10%;
+    border: 2px solid #0ea591;
+}
+
+.Description {
     color: antiquewhite;
-    font-size: 42px;
-    width: 500px;
-    height: 400px
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
 }

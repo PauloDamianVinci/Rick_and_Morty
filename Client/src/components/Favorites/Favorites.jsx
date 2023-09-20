@@ -15,9 +15,11 @@ const Favorites = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //console.log("myFavorites FAV useEff: ", myFavorites);
-        // USAR UN DISPATCH!!!!!!
         setIsLoading(false);
+        return () => {
+            // Limpieza de filtros al salir:
+            dispatch(filterCards("Todos"));
+        };
     }, []);
 
     const handleOrder = (e) => {
@@ -32,6 +34,7 @@ const Favorites = () => {
         setFilterGender(e.target.value);
         ////console.log("-I myFavorites FAV filter: ", myFavorites);
         dispatch(filterCards(e.target.value));
+        setAux(!aux); // es para forzar el refresco del DOM
         ////console.log("-F myFavorites FAV filter: ", myFavorites);
     };
 
@@ -62,7 +65,6 @@ const Favorites = () => {
                 {
                     isLoading ? (
                         <p>Cargando...</p>
-
                     ) : myFavorites ? (
                         myFavorites.map((character) => (
                             <Card

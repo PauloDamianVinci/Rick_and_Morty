@@ -70,7 +70,7 @@ const Form = (props) => {
                     }
                 </div>
                 <p className={contButton} href="/">
-                    <button className={button} type="submit">Submit</button>
+                    <button className={button} type="submit">Login</button>
                 </p>
             </div>
         </form>
