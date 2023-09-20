@@ -1,17 +1,17 @@
 import style from "./SearchBar.module.css";
 import { useState } from "react";
 let { input, cuadroTexto, container, contButton, Button } = style;
+import randomGenerator from "../../functions/randomGenerator";
 
 const SearchBar = (props) => {
    const [id, setId] = useState(0);
    const { onSearch, showSearch } = props;
-   const randomId = Math.floor(Math.random() * 826) + 1;
+   const randomId = randomGenerator(826);
 
    const handleChange = (event) => {
       setId(event.target.value);
    }
 
-   //console.log("showSearch ", showSearch);
    return (
       <div className={container}>
          {
@@ -19,10 +19,10 @@ const SearchBar = (props) => {
                <div className={cuadroTexto}>
                   <input type="number" className={input} onChange={handleChange} value={id} id="quantity" min="0" />
                   <p className={contButton} href="/">
-                     <button className={Button} onClick={() => { onSearch(id); }}>Agregar</button>
+                     <button className={Button} onClick={() => { onSearch(id, true); }}>Agregar</button>
                   </p>
                   <p className={contButton} href="/">
-                     <button className={Button} onClick={() => { onSearch(randomId); }}>Random</button>
+                     <button className={Button} onClick={() => { onSearch(randomId, false); }}>Random</button>
                   </p>
                </div>
             ) : (

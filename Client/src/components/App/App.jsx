@@ -15,6 +15,7 @@ import { reset } from "../../redux/actions";
 // Otros:
 import axios from 'axios';
 import { PATHROUTES } from "../../config/config";
+import randomGenerator from "../../functions/randomGenerator";
 
 
 const App = () => {
@@ -53,31 +54,34 @@ const App = () => {
     navigate(`${PATHROUTES.ROOT}`);
   }
 
-  const onSearch = (id) => {
+  const onSearch = (id, mostrarMensajes) => {
+    if (isLoading) return null; // para no ingresar
     setIsLoading(true);
-    axios(`${PATHROUTES.RMCHARS}/${id}`)
+    axios.get(`${PATHROUTES.RMCHARS}/${id}`)
       .then(({ data }) => {
         if (data.name) {
-          //console.log("Resultado id ", id, ": ", data);
           // verifico repeticiones:
           const ids = characters.map(el => el.id);
           if (!ids.includes(parseInt(id))) {
             setCharacters((oldChars) => [...oldChars, data]);
           } else {
-            window.alert('¡Ese personaje ya existe!');
+            if (mostrarMensajes) {
+              window.alert('¡Ese personaje ya existe!');
+            } else {
+              console.log("REPE!!!")
+              const randomId = randomGenerator(826);// cuando estoy en random y me toca un repe, lo genero otra vez
+              onSearch(randomId, false);
+            }
           }
         } else {
-          //console.log("No se encontré personaje con id ", id);
           window.alert('¡No hay personajes con este ID!');
         }
       })
       .finally(() => {
         setIsLoading(false);
       })
-
       .catch((error) => {
-        //console.log("Error para id ", id, ":", error.message); //usar error.response.status para sólo el nro.
-        window.alert(error.message);
+        window.alert(error.message); //usar error.response.status para sólo el nro.
       });
   };
 
