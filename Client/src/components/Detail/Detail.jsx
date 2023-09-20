@@ -11,7 +11,7 @@ const Detail = () => {
     const [character, setCharacter] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const charError = {
-        name: 'Detalles no encontrados',
+        name: 'Detail not found',
         status: 'not found',
         gender: 'not found',
         species: 'not found',
@@ -27,7 +27,7 @@ const Detail = () => {
                     setCharacter(data);
                 } else {
                     setCharacter(charError);
-                    window.alert('No se encontraron detalles para el personaje');
+                    window.alert('Detail not found');
                 }
             })
             .finally(() => {

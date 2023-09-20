@@ -5,19 +5,19 @@ const validator = (data) => {
     let errors = {}
 
     if (!data.mail) {
-        errors.e1 = 'Ingresa un email.'
+        errors.e1 = 'Enter an email.'
     }
     if (!emailPattern.test(data.mail)) {
-        errors.e2 = 'Ingresa un email válido.'
+        errors.e2 = 'Enter a valid email.'
     }
     if (data.mail.length > 35) {
-        errors.e3 = 'Debe tener menos de 36 caracteres.'
+        errors.e3 = 'It must be less than 36 characters.'
     }
     if (!numberPattern.test(data.password)) {
-        errors.p1 = 'Al menos un número'
+        errors.p1 = 'It must be at least one number'
     }
     if (data.password.length < 6 || data.password.length > 10) {
-        errors.p2 = 'Debe tener mas de 6 y menos de 10 caracteres.'
+        errors.p2 = 'It must have more than 6 and fewer than 10 characters.'
     }
 
     return errors;

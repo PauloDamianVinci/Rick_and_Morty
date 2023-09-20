@@ -30,7 +30,7 @@ const Nav = (props) => {
             </p>
             <p className={contButton}>
                 <Link to={PATHROUTES.FAVORITES}>
-                    <button className={`${optActive === 3 ? ButtonAct : Button}`} onClick={() => handleActive(3)}>Favoritos</button>
+                    <button className={`${optActive === 3 ? ButtonAct : Button}`} onClick={() => handleActive(3)}>Favorites</button>
                 </Link>
             </p>
             <p className={contButton}>

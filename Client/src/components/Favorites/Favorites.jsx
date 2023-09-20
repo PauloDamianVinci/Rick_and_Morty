@@ -11,14 +11,14 @@ const Favorites = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [aux, setAux] = useState(false);
     const [sortOrder, setSortOrder] = useState('A');
-    const [filterGender, setFilterGender] = useState('Todos');
+    const [filterGender, setFilterGender] = useState('All');
     const dispatch = useDispatch();
 
     useEffect(() => {
         setIsLoading(false);
         return () => {
             // Limpieza de filtros al salir:
-            dispatch(filterCards("Todos"));
+            dispatch(filterCards("All"));
         };
     }, []);
 
@@ -43,16 +43,16 @@ const Favorites = () => {
             <div className={container}>
                 <div className={containerFiltros}>
                     <div className={label}>
-                        <label>Ordenar por: </label>
+                        <label>Order by: </label>
                         <select value={sortOrder} onChange={handleOrder}>
-                            <option value="A">Ascendente</option>
-                            <option value="D">Descendente</option>
+                            <option value="A">ascending</option>
+                            <option value="D">descending</option>
                         </select>
                     </div>
                     <div className={label}>
-                        <label>Filtrar por género: </label>
+                        <label>Filter by gender: </label>
                         <select value={filterGender} onChange={handleFilter}>
-                            <option value="Todos">Todos</option>
+                            <option value="All">All</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Genderless">Genderless</option>
@@ -64,7 +64,7 @@ const Favorites = () => {
             <div className={containerCards}>
                 {
                     isLoading ? (
-                        <p>Cargando...</p>
+                        <p>Loading...</p>
                     ) : myFavorites ? (
                         myFavorites.map((character) => (
                             <Card

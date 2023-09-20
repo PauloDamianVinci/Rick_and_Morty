@@ -66,7 +66,7 @@ const App = () => {
             setCharacters((oldChars) => [...oldChars, data]);
           } else {
             if (mostrarMensajes) {
-              window.alert('¡Ese personaje ya existe!');
+              window.alert('That character already exists!');
             } else {
               console.log("REPE!!!")
               const randomId = randomGenerator(826);// cuando estoy en random y me toca un repe, lo genero otra vez
@@ -74,7 +74,7 @@ const App = () => {
             }
           }
         } else {
-          window.alert('¡No hay personajes con este ID!');
+          window.alert('There are no characters with this ID!');
         }
       })
       .finally(() => {

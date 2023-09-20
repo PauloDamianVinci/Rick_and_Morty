@@ -28,7 +28,7 @@ const SearchBar = (props) => {
                <div className={cuadroTexto}>
                   <input type="number" className={input} onChange={handleChange} value={id} id="quantity" min="0" />
                   <p className={contButton} href="/">
-                     <button className={Button} onClick={() => { handleSearch(false, true); }}>Agregar</button>
+                     <button className={Button} onClick={() => { handleSearch(false, true); }}>Add</button>
                   </p>
                   <p className={contButton} href="/">
                      <button className={Button} onClick={() => { handleSearch(true, false); }}>Random</button>

@@ -25,7 +25,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case RESET:
             return { myFavorites: [], allCharacters: [], };
         case FILTER:
-            if (payload === "Todos") {
+            if (payload === "All") {
                 return { ...state, myFavorites: state.allCharacters };
             } else {
                 const filteredCharacters = state.allCharacters.filter(
