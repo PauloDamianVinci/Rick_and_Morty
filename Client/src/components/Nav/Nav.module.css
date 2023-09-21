@@ -11,9 +11,10 @@ a {
     padding-top: 0px;
     align-items: center;
 
-    /* position: fixed;
-    top: 0; */
+}
 
+.containerHidden {
+    display: none;
 }
 
 @media (max-width: 500px) {

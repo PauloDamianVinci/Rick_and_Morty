@@ -1,5 +1,4 @@
 .container {
-    /* background-color: rgba(15, 15, 15, 0.705); */
     border-radius: 10px;
     transition: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }

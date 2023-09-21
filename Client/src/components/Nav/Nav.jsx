@@ -1,17 +1,15 @@
-
-// DEJAR FIJA LA BARRA DE NAVEGACION
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { PATHROUTES } from "../../config/config";
 import { useState } from "react";
 import style from "./Nav.module.css";
 
-let { container, contButton, Button, ButtonAct } = style;
+let { container, contButton, Button, ButtonAct, containerHidden } = style;
 
 const Nav = (props) => {
     const [optActive, setOptActive] = useState(1);
     const [showSearch, setShowSearch] = useState(true);
-    const { onSearch, logout } = props;
+    const { onSearch, logout, hide } = props;
 
     const handleActive = (index) => {
         setOptActive(index);
@@ -19,7 +17,8 @@ const Nav = (props) => {
     };
 
     return (
-        <div className={container}>
+        // oculto la barra de navegación si hay error 404:
+        <div className={`${hide ? containerHidden : container}`}>
             <p className={contButton}>
                 <Link to={PATHROUTES.HOME}>
                     <button className={`${optActive === 1 ? ButtonAct : Button}`} onClick={() => handleActive(1)}>Cards</button>

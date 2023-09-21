@@ -8,7 +8,7 @@ import ErrorView from "../../views/Error.view";
 import Form from "../../views/Form.view";
 import Detail from "../../views/Detail.view";
 // hooks, routers, reducers:
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { reset } from "../../redux/actions";
@@ -16,6 +16,7 @@ import { reset } from "../../redux/actions";
 import axios from 'axios';
 import { PATHROUTES } from "../../config/config";
 import randomGenerator from "../../functions/randomGenerator";
+import ProtectedRoute from "../../functions/ProtectedRoute";
 
 
 const App = () => {
@@ -27,12 +28,7 @@ const App = () => {
   const PASSWORD = "123456";
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    // Sin login no permito navegar por las páginas:
-    //console.log("CAMBIO ACCESO: ", access);
-    !access && navigate(`${PATHROUTES.ROOT}`);
-  }, [access]);
+  const [hide, setHide] = useState(false);
 
   const login = (userData) => {
     if (userData.password === PASSWORD && userData.mail === EMAIL) {
@@ -42,14 +38,11 @@ const App = () => {
   }
 
   const logout = () => {
-    // Quito el acceso:
-    setAccess(false);
-    // elimino tarjetas:
-    setCharacters([]);
-    // elimino store:
-    dispatch(reset());
-    // Cargo la pag de login:
-    navigate(`${PATHROUTES.ROOT}`);
+    setAccess(false); // Quito el acceso
+    setCharacters([]); // elimino tarjetas
+    dispatch(reset()); // elimino store
+    navigate(`${PATHROUTES.ROOT}`); // Cargo la pag de login
+    setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
 
   const onSearch = (id, mostrarMensajes) => {
@@ -67,7 +60,7 @@ const App = () => {
               window.alert('That character already exists!');
             } else {
               console.log("REPE!!!")
-              const randomId = randomGenerator(826);// cuando estoy en random y me toca un repe, lo genero otra vez
+              const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
               onSearch(randomId, false);
             }
           }
@@ -89,28 +82,22 @@ const App = () => {
     setCharacters(filteredCharacters);
   }
 
-  if (location.pathname === PATHROUTES.ROOT) {
-    return (
-      <div>
-        <Routes>
-          <Route path={PATHROUTES.ROOT} element={<Form login={login} />} />
-        </Routes>
-      </div>);
-  } else {
-    return (
-      <div>
-        <div>
-          <Nav onSearch={onSearch} logout={logout} />
-          <Routes>
-            <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
-            <Route path={PATHROUTES.ABOUT} element={<About />} />
-            <Route path={PATHROUTES.DETAIL} element={<Detail />} />
-            <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
-            <Route path="*" element={<ErrorView />} />
-          </Routes>
-        </div>
-      </div>);
-  }
+  return (
+    <div>
+      {location.pathname !== PATHROUTES.ROOT && < Nav hide={hide} onSearch={onSearch} logout={logout} />}
+      <Routes>
+        <Route path={PATHROUTES.LOGIN} element={<Form login={login} />} />
+        <Route element={<ProtectedRoute Access={access} />}>
+          <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
+          <Route path={PATHROUTES.ABOUT} element={<About />} />
+          <Route path={PATHROUTES.DETAIL} element={<Detail />} />
+          <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
+        </Route>
+        {/* envío setHide para ocultar la barra de navegación al mostrar error en página: */}
+        <Route path="*" element={<ErrorView logout={logout} setHide={setHide} />} />
+      </Routes>
+    </div>
+  );
 }
 export default App;
 

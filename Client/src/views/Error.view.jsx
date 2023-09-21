@@ -1,8 +1,12 @@
 import Error from "../components/Error/Error";
-const ErrorView = () => {
+
+
+const ErrorView = (props) => {
+
+    const { logout, setHide } = props;
     return (
         <>
-            <Error />
+            <Error logout={logout} setHide={setHide} />
         </>
     )
 };
