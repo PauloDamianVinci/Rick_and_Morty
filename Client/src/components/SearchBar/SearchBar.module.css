@@ -21,7 +21,20 @@ a {
     padding-right: 20px;
     border-radius: 50px;
     margin-top: 8px;
+}
 
+.cuadroTextoSearching {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    background-color: #074e45b0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50px;
+    margin-top: 8px;
+    transition: all .5s ease-in-out;
 }
 
 .input {

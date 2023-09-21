@@ -1,6 +1,8 @@
 .container {
     border-radius: 10px;
     transition: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    overflow: hidden;
 }
 
 .containerButtonImg {
@@ -9,10 +11,17 @@
     border: 2px solid #0ea591;
 }
 
+.containerButtonImg:hover {
+    filter: saturate(180%);
+}
+
+
+
 .img {
     max-width: 100%;
     height: auto;
 }
+
 
 
 .buttonClose {

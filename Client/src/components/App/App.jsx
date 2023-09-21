@@ -45,7 +45,7 @@ const App = () => {
     setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
 
-  const onSearch = (id, mostrarMensajes) => {
+  const onSearch = (id, mostrarMensajes, setSearching) => {
     if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);
     axios.get(`${PATHROUTES.RMCHARS}/${id}`)
@@ -59,9 +59,9 @@ const App = () => {
             if (mostrarMensajes) {
               window.alert('That character already exists!');
             } else {
-              console.log("REPE!!!")
+              console.log("Id repetido. Busco otra vez...")
               const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
-              onSearch(randomId, false);
+              onSearch(randomId, false, setSearching);
             }
           }
         } else {
@@ -69,6 +69,7 @@ const App = () => {
         }
       })
       .finally(() => {
+        setSearching(false);
         setIsLoading(false);
       })
       .catch((error) => {
