@@ -24,17 +24,18 @@ const App = () => {
   const [access, setAccess] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const EMAIL = "erraticless@gmail.com";
-  const PASSWORD = "123456";
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [hide, setHide] = useState(false);
 
-  const login = (userData) => {
-    if (userData.password === PASSWORD && userData.mail === EMAIL) {
-      setAccess(true);
-      navigate(`${PATHROUTES.HOME}`);
-    }
+  function login(userData) {
+    const { mail, password } = userData;
+    const URL = PATHROUTES.RMLOGIN;
+    axios(URL + `?user=${mail}&pass=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(data);
+      access && navigate(`${PATHROUTES.HOME}`);
+    });
   }
 
   const logout = () => {

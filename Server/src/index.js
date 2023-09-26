@@ -1,25 +1,38 @@
-const http = require("http");
+const { routerGet, routerLogin, routerPostFav, routerDeleteFav } = require('./routes/index');
+
+const express = require('express');
+//const cors = require('cors');
+const server = express();
 const PORT = 3001;
-const getCharById = require('./controllers/getCharById');
 
-http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    const { url } = req;
+//server.use(cors()); // para evitar el problema de error de acceso desde el front
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    res.header(
+        'Access-Control-Allow-Methods',
+        'GET, POST, OPTIONS, PUT, DELETE'
+    );
+    next();
+});
+server.use(express.json());
+//Middleware para agregar "/rickandmorty" antes de cada ruta:
+// server.use((req, res, next) => {
+//     req.url = `/rickandmorty${req.url}`;
+//     next();
+// });
 
-    if (url.includes('/rickandmorty/character')) {
-        // Divido la URL por '/' y tomo el último elemento que contiene el ID:
-        const parts = url.split('/');
-        const idString = parts[parts.length - 1];
-        const id = parseInt(idString, 10);
-        if (!isNaN(id)) {
-            return getCharById(res, id);
-        } else {
-            res.writeHead(400);
-            return res.end();
-        }
-    }
-    console.log('La URL no incluye /rickandmorty/character');
-    res.writeHead(404);
-    res.end();
-})
-    .listen(PORT, "localhost");
+server.use('/rickandmorty/character', routerGet);
+server.use('/rickandmorty/login', routerLogin);
+server.use('/rickandmorty/fav', routerPostFav);
+server.use('/rickandmorty/fav', routerDeleteFav);
+
+server.listen(PORT, () => {
+    console.log('Server raised in port: ' + PORT);
+});
+
+module.exports = express;

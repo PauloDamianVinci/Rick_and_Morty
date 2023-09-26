@@ -7,6 +7,8 @@ const PATHROUTES = {
     DETAILBASE: '/detail',
     FAVORITES: '/favorites',
     RMCHARS: 'http://localhost:3001/rickandmorty/character',
+    RMLOGIN: 'http://localhost:3001/rickandmorty/login',
+    RMFAV: 'http://localhost:3001/rickandmorty/fav',
 }
 
 const PATHVAR = {
