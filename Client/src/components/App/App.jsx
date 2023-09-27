@@ -28,14 +28,30 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hide, setHide] = useState(false);
 
-  function login(userData) {
+  // function login(userData) {
+  //   const { mail, password } = userData;
+  //   const URL = PATHROUTES.RMLOGIN;
+  //   axios(URL + `?user=${mail}&pass=${password}`).then(({ data }) => {
+  //     const { access } = data;
+  //     setAccess(data);
+  //     access && navigate(`${PATHROUTES.HOME}`);
+  //   });
+  // }
+
+  async function login(userData) {
     const { mail, password } = userData;
-    const URL = PATHROUTES.RMLOGIN;
-    axios(URL + `?user=${mail}&pass=${password}`).then(({ data }) => {
-      const { access } = data;
-      setAccess(data);
-      access && navigate(`${PATHROUTES.HOME}`);
-    });
+    try {
+      const response = await axios.get(PATHROUTES.RMLOGIN + `?user=${mail}&pass=${password}`)
+      const rta = response.data;
+      const accOK = rta.access;
+      setAccess(accOK);
+      if (accOK) {
+        navigate(`${PATHROUTES.HOME}`);
+      }
+      //access && navigate(`${PATHROUTES.HOME}`);
+    } catch (error) {
+      window.alert(error.message); //usar error.response.status para sólo el nro.
+    }
   }
 
   const logout = () => {
@@ -46,36 +62,32 @@ const App = () => {
     setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
 
-  const onSearch = (id, mostrarMensajes, setSearching) => {
+  async function onSearch(id, mostrarMensajes, setSearching) {
     if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);
-    axios.get(`${PATHROUTES.RMCHARS}/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
-          // verifico repeticiones:
-          const ids = characters.map(el => el.id);
-          if (!ids.includes(parseInt(id))) {
-            setCharacters((oldChars) => [...oldChars, data]);
-          } else {
-            if (mostrarMensajes) {
-              window.alert('That character already exists!');
-            } else {
-              console.log("Id repetido. Busco otra vez...")
-              const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
-              onSearch(randomId, false, setSearching);
-            }
-          }
+    try {
+      const response = await axios.get(`${PATHROUTES.RMCHARS}/${id}`)
+      const data = response.data;
+      // verifico repeticiones:
+      const ids = characters.map(el => el.id);
+      if (!ids.includes(parseInt(id))) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        if (mostrarMensajes) {
+          window.alert('That character already exists!');
         } else {
-          window.alert('There are no characters with this ID!');
+          console.log("Id repetido. Busco otra vez...")
+          const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
+          onSearch(randomId, false, setSearching);
         }
-      })
-      .finally(() => {
-        setSearching(false);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        window.alert(error.message); //usar error.response.status para sólo el nro.
-      });
+      }
+      setSearching(false);
+      setIsLoading(false);
+    } catch (error) {
+      setSearching(false);
+      setIsLoading(false);
+      window.alert(error.message); //usar error.response.status para sólo el nro.
+    }
   };
 
   const onClose = (id) => {

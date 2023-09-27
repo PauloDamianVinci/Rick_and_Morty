@@ -7,7 +7,6 @@ const postFav = (req, res) => {
 
 const deleteFav = (req, res) => {
     const { id } = req.params;
-    console.log("---------------- ", id);
     if (id === '999') {
         // elimino todos los id:
         myFavorites = [];

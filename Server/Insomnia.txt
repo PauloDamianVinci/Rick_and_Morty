@@ -1,0 +1,15 @@
+GET:
+http://localhost:3001/rickandmorty/character/2
+
+GET login:
+http://localhost:3001/rickandmorty/login?user=erraticless@gmail.com&&pass=123456
+
+----------------------
+POST add fav:
+http://localhost:3001/rickandmorty/fav
+{"id":170,"name":"Jacqueline","species":"Human","gender":"Female","origin":"Earth (Replacement Dimension)","image":"https://rickandmortyapi.com/api/character/avatar/170.jpeg"}
+----------------------
+DELETE fav:
+http://localhost:3001/rickandmorty/fav/27
+
+
