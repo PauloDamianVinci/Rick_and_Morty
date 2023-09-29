@@ -9,6 +9,7 @@ async function getCharById(req, res) {
         const character = { id, name, gender, species, origin, image, status };
         res.json(character);
     } catch (err) {
+        console.log(err.message);
         let errMessTxt = err.message;
         let errMess = err.response.status;
         return res.status(errMess).send(errMessTxt);
