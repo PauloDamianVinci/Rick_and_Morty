@@ -1,38 +1,25 @@
-const { routerGet, routerLogin, routerPostFav, routerDeleteFav } = require('./routes/index');
+const express = require("express");
+const router = require("./routes/index");
 
-const express = require('express');
-//const cors = require('cors');
 const server = express();
 const PORT = 3001;
 
-//server.use(cors()); // para evitar el problema de error de acceso desde el front
+// middleware para tener acceso sin seguridad:
 server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
     res.header(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept'
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
     );
-    res.header(
-        'Access-Control-Allow-Methods',
-        'GET, POST, OPTIONS, PUT, DELETE'
-    );
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
 });
+// middleware para manejar formato json (body):
 server.use(express.json());
-//Middleware para agregar "/rickandmorty" antes de cada ruta:
-// server.use((req, res, next) => {
-//     req.url = `/rickandmorty${req.url}`;
-//     next();
-// });
-
-server.use('/rickandmorty/character', routerGet);
-server.use('/rickandmorty/login', routerLogin);
-server.use('/rickandmorty/fav', routerPostFav);
-server.use('/rickandmorty/fav', routerDeleteFav);
+// middleware para anteponerle "/rickandmorty" a las rutas:
+server.use("/rickandmorty", router);
 
 server.listen(PORT, () => {
-    console.log('Server raised in port: ' + PORT);
+    console.log(`Server running into ${PORT} Port`);
 });
-
-module.exports = express;

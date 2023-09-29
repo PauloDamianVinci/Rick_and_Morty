@@ -44,6 +44,8 @@ const App = () => {
       const response = await axios.get(PATHROUTES.RMLOGIN + `?user=${mail}&pass=${password}`)
       const rta = response.data;
       const accOK = rta.access;
+
+      console.log(rta);
       setAccess(accOK);
       if (accOK) {
         navigate(`${PATHROUTES.HOME}`);
