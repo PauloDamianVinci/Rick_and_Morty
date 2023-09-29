@@ -1,22 +1,22 @@
 // Componentes:
-import Cards from "../Cards/Cards";
-import Nav from "../Nav/Nav";
-import Favorites from "../Favorites/Favorites";
+import Cards from "./components/Cards/Cards";
+import Nav from "./components/Nav/Nav";
+import Favorites from "./components/Favorites/Favorites";
 // Vistas:
-import About from "../../views/About.view";
-import ErrorView from "../../views/Error.view";
-import Form from "../../views/Form.view";
-import Detail from "../../views/Detail.view";
+import About from "./views/About.view";
+import ErrorView from "./views/Error.view";
+import Form from "./views/Form.view";
+import Detail from "./views/Detail.view";
 // hooks, routers, reducers:
 import { useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { reset } from "../../redux/actions";
+import { reset } from "./redux/actions";
 // Otros:
 import axios from 'axios';
-import { PATHROUTES } from "../../config/config";
-import randomGenerator from "../../functions/randomGenerator";
-import ProtectedRoute from "../../functions/ProtectedRoute";
+import { PATHROUTES } from "./config/config";
+import randomGenerator from "./functions/randomGenerator";
+import ProtectedRoute from "./functions/ProtectedRoute";
 
 
 const App = () => {
@@ -27,16 +27,6 @@ const App = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [hide, setHide] = useState(false);
-
-  // function login(userData) {
-  //   const { mail, password } = userData;
-  //   const URL = PATHROUTES.RMLOGIN;
-  //   axios(URL + `?user=${mail}&pass=${password}`).then(({ data }) => {
-  //     const { access } = data;
-  //     setAccess(data);
-  //     access && navigate(`${PATHROUTES.HOME}`);
-  //   });
-  // }
 
   async function login(userData) {
     const { mail, password } = userData;
