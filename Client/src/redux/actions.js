@@ -6,16 +6,13 @@ export const ORDER = "ORDER";
 import axios from 'axios';
 import { PATHROUTES } from "../config/config";
 
-// export const addFav = (character) => {
-//     return { type: ADD_FAV, payload: character };
-// };
 export const addFav = (character) => {
     const endpoint = PATHROUTES.RMFAV;
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character);
-            dispatch({
-                type: 'ADD_FAV',
+            return dispatch({
+                type: ADD_FAV,
                 payload: data,
             });
         } catch (error) {
@@ -24,28 +21,13 @@ export const addFav = (character) => {
     };
 };
 
-// export const addFav = (character) => {
-//     const endpoint = PATHROUTES.RMFAV;
-//     return (dispatch) => {
-//         axios.post(endpoint, character).then(({ data }) => {
-//             return dispatch({
-//                 type: 'ADD_FAV',
-//                 payload: data,
-//             });
-//         });
-//     };
-// };
-
-// export const removeFav = (id) => {
-//     return { type: REMOVE_FAV, payload: id };
-// };
 export const removeFav = (id) => {
     const endpoint = PATHROUTES.RMFAV + "/" + id;
     return async (dispatch) => {
         try {
             const { data } = await axios.delete(endpoint);
-            dispatch({
-                type: 'REMOVE_FAV',
+            return dispatch({
+                type: REMOVE_FAV,
                 payload: data,
             });
         } catch (error) {

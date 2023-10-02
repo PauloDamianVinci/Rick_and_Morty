@@ -28,7 +28,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hide, setHide] = useState(false);
 
-  async function login(userData) {
+  //async function login(userData) {
+  const login = async (userData) => {
     const { mail, password } = userData;
     try {
       const response = await axios.get(PATHROUTES.RMLOGIN + `?user=${mail}&pass=${password}`)
@@ -53,8 +54,8 @@ const App = () => {
     navigate(`${PATHROUTES.ROOT}`); // Cargo la pag de login
     setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
-
-  async function onSearch(id, mostrarMensajes, setSearching) {
+  //async function onSearch(id, mostrarMensajes, setSearching) {
+  const onSearch = async (id, mostrarMensajes, setSearching) => {
     if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);
     try {
