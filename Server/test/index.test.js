@@ -53,7 +53,6 @@ describe("Test de RUTAS", () => {
         response = await session(app).get('/rickandmorty/character/1');
         expect(response.statusCode).toBe(200);
     });
-
 });
 
 describe("GET /rickandmorty/character/:id", () => {

@@ -36,7 +36,7 @@ const App = () => {
       const rta = response.data;
       const accOK = rta.access;
 
-      console.log(rta);
+      //console.log(rta);
       setAccess(accOK);
       if (accOK) {
         navigate(`${PATHROUTES.HOME}`);
@@ -69,7 +69,7 @@ const App = () => {
         if (mostrarMensajes) {
           window.alert('That character already exists!');
         } else {
-          console.log("Id repetido. Busco otra vez...")
+          //console.log("Id repetido. Busco otra vez...")
           const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
           onSearch(randomId, false, setSearching);
         }
