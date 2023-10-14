@@ -11,7 +11,8 @@ import Detail from "./views/Detail.view";
 import { useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { reset } from "./redux/actions";
+import { addFav, saveIdUser } from "./redux/actions";
+
 // Otros:
 import axios from 'axios';
 import { PATHROUTES } from "./config/config";
@@ -28,17 +29,24 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hide, setHide] = useState(false);
 
-  //async function login(userData) {
   const login = async (userData) => {
     const { mail, password } = userData;
     try {
-      const response = await axios.get(PATHROUTES.RMLOGIN + `?user=${mail}&pass=${password}`)
+      const response = await axios.get(PATHROUTES.RMLOGIN + `?email=${mail}&password=${password}`)
       const rta = response.data;
       const accOK = rta.access;
-
-      //console.log(rta);
+      const idUser = rta.id;
+      // console.log("rta ", rta);
+      // console.log("idUser ", idUser);
       setAccess(accOK);
       if (accOK) {
+        dispatch(saveIdUser(idUser));
+        // traigo los favoritos previamente guardados:
+        const newFav = { userId: idUser };
+        //console.log(newFav);
+        dispatch(addFav(newFav));
+
+
         navigate(`${PATHROUTES.HOME}`);
       }
       //access && navigate(`${PATHROUTES.HOME}`);
@@ -50,11 +58,11 @@ const App = () => {
   const logout = () => {
     setAccess(false); // Quito el acceso
     setCharacters([]); // elimino tarjetas
-    dispatch(reset()); // elimino store
+    //dispatch(reset()); // elimino store
     navigate(`${PATHROUTES.ROOT}`); // Cargo la pag de login
     setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
-  //async function onSearch(id, mostrarMensajes, setSearching) {
+
   const onSearch = async (id, mostrarMensajes, setSearching) => {
     if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);

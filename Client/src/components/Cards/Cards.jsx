@@ -15,6 +15,7 @@ const Cards = (props) => {
                   gender={char.gender}
                   origin={char.origin.name}
                   image={char.image}
+                  status={char.status}
                   onClose={onClose}
                />
             );

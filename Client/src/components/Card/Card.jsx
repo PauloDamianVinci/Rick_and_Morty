@@ -12,20 +12,43 @@ const Card = (props) => {
    const [isFav, setIsFav] = useState(false);
    const dispatch = useDispatch();
    const myFavorites = useSelector((state) => state.myFavorites);
+   const myUserId = useSelector((state) => state.IdUser);
    const [isLoading, setIsLoading] = useState(true);
 
    const handleFavorite = () => {
-      isFav ? dispatch(removeFav(id)) : dispatch(addFav(props));
+      //isFav ? dispatch(removeFav(id)) : dispatch(addFav(props));
+      if (isFav) {
+         //dispatch(removeFav(id));
+         //console.log("Remove fav id ", id)
+
+         const newFav = { userId: myUserId, id: id };
+         dispatch(removeFav(newFav));
+      } else {
+         //console.log(props);
+         //console.log("Add fav id ", props)
+         const newFav = { userId: myUserId, ...props };
+         //console.log(newFav);
+         dispatch(addFav(newFav));
+      }
       setIsFav(!isFav);
    };
 
    useEffect(() => {
       setIsLoading(true);
+      // myFavorites.forEach((fav) => {
+      //    if (fav.id === props.id) {
+      //       setIsFav(true);
+      //    }
+      // });
       myFavorites.forEach((fav) => {
-         if (fav.id === props.id) {
+         if (fav.CharId === props.id) {
             setIsFav(true);
          }
       });
+
+
+      //console.log("myuserId ", myuserId)
+
       setIsLoading(false);
    }, [myFavorites]);
 

@@ -1,39 +1,22 @@
-import { ADD_FAV, REMOVE_FAV, RESET, FILTER, ORDER } from "../redux/actions";
+import { SET_ID_USER, ADD_FAV, REMOVE_FAV, RESET, FILTER, ORDER } from "../redux/actions";
 
 const initialState = {
     myFavorites: [],
     allCharacters: [],
+    IdUser: 0,
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case ADD_FAV:
-            // const updatedAllCharacters = [...state.allCharacters, payload];
-            // return { ...state, myFavorites: updatedAllCharacters, allCharacters: updatedAllCharacters };
-            return { ...state, myFavorites: payload, allCharacters: payload };
-        case REMOVE_FAV:
-            // const updatedMyFavorites = state.myFavorites.filter(
-            //     (char) => char.id !== Number(payload)
-            // );
-            // const updatedAllChars = state.allCharacters.filter(
-            //     (char) => char.id !== Number(payload)
-            // );
-            // return {
-            //     ...state,
-            //     myFavorites: updatedMyFavorites,
-            //     allCharacters: updatedAllChars,
-            // };
-
-
-            // return {
-            //     ...state,
-            //     myFavorites: payload
-            // };
+        case SET_ID_USER:
             return {
                 ...state,
-                myFavorites: payload,
-                allCharacters: payload
+                IdUser: payload,
             };
+        case ADD_FAV:
+            return { ...state, myFavorites: payload, allCharacters: payload };
+        case REMOVE_FAV:
+            return { ...state, myFavorites: payload, allCharacters: payload };
         case RESET:
             return { myFavorites: [], allCharacters: [], };
         case FILTER:

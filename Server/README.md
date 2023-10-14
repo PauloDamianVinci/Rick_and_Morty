@@ -1,4 +1,4 @@
-# **💪 HW7 | Testing - Integration**
+# **💪 HW3 | Sequelize Part 1 - Integration**
 
 ## **🕒 DURACIÓN ESTIMADA**
 
@@ -16,147 +16,235 @@ XX minutos
 
 ## **📝 INTRODUCCIÓN**
 
-En esta homework construiremos algunos test para validar que nuestro proyecto esté funcionando correctamente.
+En esta homework pondremos en práctica todo lo que hemos aprendido hasta ahora sobre Sequelize. Aplicaremos nuestros conocimientos para conectar nuestro código con una nueva base de datos para nuestro proyecto de Rick & Morty.
 
-Te daremos instrucciones solo para construir algunos test del lado de tu Back-End, pero tu puedes crear todos los que gustes.
-
-Finalmente te brindaremos información para que aprendas a testear tu Front-End.
-
-<br />
+</br >
 
 ---
 
 ## **📋 INSTRUCCIONES**
 
-### **👩‍💻 EJERCICIO 01 | Dependencias**
+### **👩‍💻 EJERCICIO 01 | Dependencias & Config**
 
-Instala las siguientes dependencias en el **`package.json`** de tu servidor:
+Lo primero que deberás hacer es instalar las siguientes dependencias en tu **`package.json`**:
 
--  **jest**
--  **supertest**
+-  **sequelize**
+-  **pg**
+-  **dotenv**
 
-Además, dentro del **`package.json`** deberás agregar el siguiente script:
+Una vez las hayas instalado tendrás que crear la base de datos en PostgreSQL. Para crear la base de datos puedes optar por utilizar directamente **`pgAdmin`**. En el caso de que quieras hacerlo por terminal sigue estos pasos:
 
-```bash
-   "test": "jest --detectOpenHandles"
+> ⚠️ [**IMPORTANTE**]: es muy importante que el nombre de la base de datos sea: **`rickandmorty`**. En el caso de no cumplir esto la homework puede fallar.
+
+1. Abre la terminal **`SQL Shell (psql)`** e ingresa tu información personal.
+
+2. Crea una base de datos con el nombre **`rickandmorty`** utilizando el comando que ya conoces.
+
+   Puedes verificar que se haya creado correctamente con el comando:
+
+   ```SQL
+      \l
+   ```
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 02 | ENV**
+
+Dirígete a la raíz de tu proyecto Back-End. Allí deberás crea un archivo llamado **`.env`**. En su interior debes escribir lo siguiente:
+
+```js
+DB_USER=postgres
+DB_PASSWORD= ---> // ¡Aquí va tu contraseña!
+DB_HOST=localhost
 ```
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 02 | Modularizar el Server**
+### **👩‍💻 EJERCICIO 03 | DB Connection**
 
-1. Dentro de la carpeta **src** debes crear un archivo llamado **`app.js`**.
+Ya tenemos todo lo necesario para comenzar a trabajar. Comenzaremos por conectar el código con nuestra base de datos. Para esto:
 
-2. Luego de crealo tendrás que copiar y pegar todo lo que tienes en tu archivo **`index.js`** dentro de este, exceptuando la ejecución de la función **listen**. Esta función debe permanecer en tu archivo **`index.js`**.
+1. Lleva el archivo [**DB_connection**](./DB_connection.js) a tu carpeta **src**.
 
-3. Dentro de tu archivo **`app.js`** debes exportar tu servidor, y luego importarlo dentro de tu archivo **`index.js`**.
+2. Dentro de él encontrás el siguiente paso a seguir.
 
-> [**NOTA**]: ten en cuenta que la variable PORT (si es que tienes una) debe permanecer en el archivo **`index`**.
-
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 03 | Testing Template**
-
-Dirígete a la carpeta **test**. En esta crea un archivo llamado **`index.test.js`**. Aquí desarrollaremos el testing.
-
-1. Dentro del archivo que acabas de crear tendrás que importar los siguientes elementos:
-
-   ```javascript
-   const app = require('../src/app');
-   const session = require('supertest');
-   const agent = session(app);
-   ```
-
-2. Crea la primer función **describe** con el mensaje **"_Test de RUTAS_"**.
-
-Recuerda que todos los ejercicios de testing serán asincrónicos, ya que estaremos ejecutando rutas. ¡Puedes utilizar **promesas** o **async await**!
+> [**NOTA**]: revisa el código comentado en la sección **`Ejercicio 03`**.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 04 | GET /rickandmorty/character/:id**
+### **👩‍💻 EJERCICIO 04 | Models**
 
-Crea un **describe** con el mensaje '**`GET /rickandmorty/character/:id`**'.
+Llegó el momento de crear nuestros modelos. LLeva la carptea [**models**]("./models) a tu carpeta **src**. Dentro de esta carpeta encontrarás dos archivos: **`User`** y **`Favorite`**. Tendrás que agregar las propiedades y validaciones correspondiente en cada uno de los modelos.
 
-1. **PRIMER TEST**:
+A continuación te dejamos las propiedades de cada modelo junto con sus validaciones.
 
-   Crea un **it** con el mensaje '**`Responde con status: 200`**'. En su **callback** pega el siguiente código:
+<div style="display: flex; position: relative; height: 45vh; overflow: hidden;">
 
-   ```javascript
-   await agent.get('/rickandmorty/character/1').expect(200);
-   ```
+<div style="position: absolute; top: 3vh; left: 15vw;">
 
-2. **SEGUNDO TEST**:
+### **USER**
 
-   Crea un **it** con el mensaje '**`Responde un objeto con las propiedades: "id", "name", "species", "gender", "status", "origin" e "image"`**'.
+<details>
+   <summary>id</summary>
+   <ul>
+      <li>dataType: integer</li>
+      <li>allowNull: false</li>
+      <li>primaryKey: true</li>
+   </ul>
+</details>
+<details>
+   <summary>email</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+      <li>isEmail: true</li>
+   </ul>
+</details>
+<details>
+   <summary>password</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
 
-   Aquí tendrás que obtener la respuesta de esta ruta. Valida si en la propiedad **body** de la respuesta obtienes todas las propiedades correspondientes.
+</div>
 
-> [**PISTA**]: podrías validar esto con el métodos [**`toHaveProperty`**](https://jestjs.io/docs/expect#tohavepropertykeypath-value).
+<div style="position: absolute; top: 3vh; right: 15vw; width: 20vw;">
 
-3. **TERCER TEST**:
+### **FAVORITE**
 
-   Crea un **it** con el mensaje '**`Si hay un error responde con status: 500`**'. Aquí tendrás que validar que este será el status si se ingresa un id que no existe para buscar al personaje. Es decir, tendrás que forzar el error.
+<details>
+   <summary>id</summary>
+   <ul>
+      <li>dataType: integer</li>
+      <li>allowNull: false</li>
+      <li>primaryKey: true</li>
+   </ul>
+</details>
+<details>
+   <summary>name</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>status</summary>
+   <ul>
+      <li>dataType: Enum (Alive - Dead - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>species</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>gender</summary>
+   <ul>
+      <li>dataType: Enum (Female - Male - Genderless - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>origin</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>image</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+
+</div>
+
+</div>
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 05 | GET /rickandmorty/login**
+### **👩‍💻 EJERCICIO 05 | Instanciar Modelos**
 
-Crea un nuevo describe con el comentario: **"_GET /rickandmorty/login_"**. En este test tendrás que validar dos cosas:
+Ya tenemos nuestra conexión a la base de datos y nuestros modelos creados. Lo único que nos queda por hacer es que cada vez que levantemos el proyecto, estos modelos se guarden en la base de datos. Para esto:
 
-1. Valida que, si ejecutas esta ruta pasándole la información de login (email y password) correctas, debes obtener un objeto como este:
+1. Dirígete al archivo **`DB_connection`**. En este archivo importa los dos modelos que creaste previamente. Asegúrate de importalos con el nombre **"`FavoriteModel`"** y **"`UserModel`"**.
+
+2. Luego de importarlos tendrás que ejecutar cada uno, pasándoles como argumento la instancia de sequelize que se encuentra más arriba.
+
+Por ejemplo, si tuvieras un modelo llamado **Henry** deberías hacer lo siguiente:
+
+```js
+HenryModel(sequelize);
+```
+
+> [**NOTA**]: 👀 revisa que en el archivo hay un espacio comentado para que realices este ejercicio.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 06 | RELATIONS**
+
+Ahora tendrás que relacionar tus modelos. Si nos ponemos a pensar, un usuario puede tener muchos personajes favoritos. Y un personaje puede ser el favorito de muchos usuarios. ¡Esto quiere decir que la relación debe ser de muchos a muchos!
+
+1. Dirígete al archivo **`DB_connection`** y relaciona tus modelos. La tabla intermedia debe llamarse **`user_favorite`**.
+
+2. Una vez los hayas relacionado, exporta cada modelo de forma individual.
+
+> [**NOTA**]: 👀 revisa que en el archivo hay un espacio comentado para que realices este ejercicio.
+
+3. Para terminar dirígete a tu archivo **`index.js`** e importa la varaible **`conn`** de tu archivo **`DB_connection`**. Una vez la hayas importado, ¡sincroniza sequelize con tu base de datos antes que se levante el servidor!
 
    ```js
-   {
-      access: true;
-   }
+   const { conn } = require('./DB_connection');
    ```
 
-> [**NOTA**]: recuerda que la información la debes enviar por **`Query`**. Además, recuerda que la información de login se encuentra en tu achivo **`/src/utils/index`**.
-
-2. Ahora tendrás que testear que en el caso de enviar la información incorrecta la porpiedad **access** sea **`false`**.
-
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 06 | POST /rickandmorty/fav**
+<div style="background-color: #343434; padding: 2vw;">
 
-Crea un nuevo describe con el texto : **"_POST /rickandmorty/fav_"**. Dentro de este test tendrás que validar:
+## **😼 BREAK 😼**
 
-1. Lo que envíes por body debe ser devuelto en un arreglo.
+En este momento ya deberíamos de poder levantar el proyecto y que todo esté funcionando correctamente. Para esto ejecuta el comando:
 
-2. Si vuelves a enviar un nuevo elemento por body, este debe ser devuelto en un arreglo que incluye un elemento enviado previamente.
+```bash
+   npm start
+```
 
-<br />
+<div align="center" >
+   <img src="./assets/workInProgress.png" alt="" />
+</div>
 
----
-
-### **👩‍💻 EJERCICIO 07 | DELETE /rickandmorty/fav/:id**
-
-Crea un nuevo describe con el texto : **"_DELETE /rickandmorty/fav/:id_"**. Dentro de este test tendrás que validar:
-
-1. Primero deberás testear que lo que devuelva esta ruta, en el caso de que no haya ningún personaje con el ID que envías, sea un arreglo con los elementos previos sin modificar.
-
-2. Luego debes testear que cuando envías un ID válido se elimine correctamente al personaje.
+</div>
 
 <br />
 
 ---
-
-## **💪 EXTRA CREDIT | Testing Front-End**
-
-Te invitamos a que revises los **`Recursos adicionales`** para investigar como testear un **Front-End** con React y Jest.
 
 ## **🔎 Recursos adicionales**
 
--  Documentación [**Matchers From Jest**](https://jestjs.io/docs/using-matchers)
--  Documentación [**React-Jest Testing**](https://testing-library.com/docs/react-testing-library/intro/)
--  Documentación [**Jest - Enzyme**](https://enzymejs.github.io/enzyme/docs/guides/jest.html)
+-  Documentación [**API Rick and Morty**](https://rickandmortyapi.com/documentation/#get-all-characters)
+
+-  Documentación [**Sequelize**](https://sequelize.org/docs/v6/)
+
+<div align="center">
+   <img src="./assets/rickandmorty.jpg" alt="" width="800px" />
+</div>

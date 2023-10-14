@@ -12,4 +12,7 @@ http://localhost:3001/rickandmorty/fav
 DELETE fav:
 http://localhost:3001/rickandmorty/fav/27
 
-
+----------------------
+POST login:
+http://localhost:3001/rickandmorty/login
+{"email":"pepe@nada.com","password":"123456"}
