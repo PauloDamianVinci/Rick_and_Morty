@@ -1,5 +1,5 @@
 {
-  "name": "rick_morty",
+  "name": "rick_morty_back",
   "version": "1.0.0",
   "description": "Rick and Morty back end",
   "main": "index.js",
