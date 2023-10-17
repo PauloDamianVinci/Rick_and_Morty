@@ -36,8 +36,6 @@ const App = () => {
       const rta = response.data;
       const accOK = rta.access;
       const idUser = rta.id;
-      // console.log("rta ", rta);
-      // console.log("idUser ", idUser);
       setAccess(accOK);
       if (accOK) {
         dispatch(saveIdUser(idUser));
@@ -45,11 +43,8 @@ const App = () => {
         const newFav = { userId: idUser };
         //console.log(newFav);
         dispatch(addFav(newFav));
-
-
         navigate(`${PATHROUTES.HOME}`);
       }
-      //access && navigate(`${PATHROUTES.HOME}`);
     } catch (error) {
       window.alert(error.message); //usar error.response.status para sólo el nro.
     }
