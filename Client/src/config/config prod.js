@@ -6,9 +6,9 @@ const PATHROUTES = {
     DETAIL: '/detail/:id',
     DETAILBASE: '/detail',
     FAVORITES: '/favorites',
-    RMCHARS: 'https://rick-and-morty-ten-sage.vercel.app/character',
-    RMLOGIN: 'https://rick-and-morty-ten-sage.vercel.app/login',
-    RMFAV: 'https://rick-and-morty-ten-sage.vercel.app/fav',
+    RMCHARS: 'https://rick-and-morty-three-ashen.vercel.app//character',
+    RMLOGIN: 'https://rick-and-morty-three-ashen.vercel.app//login',
+    RMFAV: 'https://rick-and-morty-three-ashen.vercel.app//fav',
 }
 
 const PATHVAR = {
