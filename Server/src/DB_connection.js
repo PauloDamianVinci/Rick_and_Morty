@@ -6,9 +6,18 @@ const UserFunction = require('../src/models/User');
 const FavoriteFunction = require('../src/models/Favorite');
 
 const database = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require`,
    { logging: false, native: false }
 );
+
+// ! resguardo conexión insegura (para BDD local):
+// const database = new Sequelize(
+//    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+//    { logging: false, native: false }
+// );
+
+
+
 UserFunction(database);
 FavoriteFunction(database);
 
