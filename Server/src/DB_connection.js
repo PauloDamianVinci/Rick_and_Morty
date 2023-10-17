@@ -14,8 +14,8 @@ FavoriteFunction(database);
 
 // Relacionar modelos:
 const { User, Favorite } = database.models;
-// User.belongsToMany(Favorite, { through: "UserFavorite" });
-// Favorite.belongsTo(User, { through: "UserFavorite" });
+// User.belongsToMany(Favorite, { through: "user_favorite" });
+// Favorite.belongsToMany(User, { through: "user_favorite" });
 
 module.exports = {
    database,

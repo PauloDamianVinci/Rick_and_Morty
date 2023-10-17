@@ -2,9 +2,7 @@ const { Favorite } = require('../DB_connection');
 
 const postFav = async (req, res) => {
     const { userId, id, name, origin, status, image, species, gender } = req.body;
-    //console.log(req.body);
     try {
-        //if (!id || !userId || !name || !origin || !status || !image || !species || !gender) return res.status(401).send("Faltan datos");
         if (id && userId && name && origin && status && image && species && gender) {
             const addFav = await Favorite.findOrCreate({
                 where: { userId: userId, name: name },
@@ -13,7 +11,6 @@ const postFav = async (req, res) => {
                 }
             });
         } // si no me carga los datos sólo devuelvo lo que tengo. Es para que al iniciar el programa, se traiga los fav almacenados para mostrar.
-
         // devuelvo todos los favoritos del usuario:
         const newFav = await Favorite.findAll({
             where: { userId: userId },
