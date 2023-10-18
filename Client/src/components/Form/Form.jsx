@@ -1,9 +1,10 @@
 import style from "./Form.module.css";
 import { useState } from "react";
 import Validation from "../../functions/validation";
-import { PATHVAR } from "../../config/config";
 
 let { container, emailDiv, passDiv, datosDiv, img, containerImg, errores, contButton, button } = style;
+
+const IMG_LOGIN = import.meta.env.VITE_IMG_LOGIN || '/src/assets/RM_Main_Logo.png';
 
 const Form = (props) => {
     const { login } = props;
@@ -32,7 +33,7 @@ const Form = (props) => {
         <form className={container} onSubmit={handleSubmit}>
             <div className={datosDiv}>
                 <div className={containerImg}>
-                    <img className={img} src={PATHVAR.IMG_LOGIN} alt="" />
+                    <img className={img} src={IMG_LOGIN} alt="" />
                 </div>
                 <div className={emailDiv}>
                     <label htmlFor="mail">Email:</label>
@@ -75,6 +76,5 @@ const Form = (props) => {
             </div>
         </form>
     )
-
 }
 export default Form;

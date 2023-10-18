@@ -1,21 +1,29 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+
+const DB_USER = process.env.DB_USER || 'postgres';
+const DB_PASSWORD = process.env.DB_PASSWORD || 'admin';
+const DB_HOST = process.env.DB_HOST || 'localhost';
+const DB_PORT = process.env.DB_PORT || 5432;
+const DB_NAME = process.env.DB_NAME || 'rickandmorty';
+const SECURE = process.env.SECURE || false;
 
 const UserModel = require('../src/models/User');
 const FavoriteModel = require('../src/models/Favorite');
 
-// ! conexión segura (para BDD remota):
-// const database = new Sequelize(
-//    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require`,
-//    { logging: false, native: false }
-// );
+let strConn = '';
+if (SECURE) {
+   // conexión segura (para BDD remota):
+   strConn = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require`;
+} else {
+   strConn = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+}
 
-// ! conexión insegura (para BDD local):
 const database = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+   strConn,
    { logging: false, native: false }
 );
+
 UserModel(database);
 FavoriteModel(database);
 // Relacionar modelos:

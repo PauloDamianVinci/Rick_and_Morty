@@ -1,6 +1,5 @@
 import Error from "../components/Error/Error";
 
-
 const ErrorView = (props) => {
 
     const { logout, setHide } = props;

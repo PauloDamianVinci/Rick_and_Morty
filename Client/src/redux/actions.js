@@ -5,10 +5,13 @@ export const RESET = "RESET";
 export const FILTER = "FILTER";
 export const ORDER = "ORDER";
 import axios from 'axios';
-import { PATHROUTES } from "../config/config";
+
+const API_URL_BASE = import.meta.env.VITE_API_URL_BASE || 'http://localhost:3001/rickandmorty';
+const FAV_URL = import.meta.env.VITE_RM_FAV || '/fav';
+const RM_FAV = API_URL_BASE + FAV_URL;
 
 export const addFav = (character) => {
-    const endpoint = PATHROUTES.RMFAV;
+    const endpoint = RM_FAV;
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character);
@@ -23,7 +26,7 @@ export const addFav = (character) => {
 };
 
 export const removeFav = (dataFav) => {
-    const endpoint = PATHROUTES.RMFAV + "/" + dataFav.id;
+    const endpoint = RM_FAV + "/" + dataFav.id;
     const myBody = { userId: dataFav.userId.toString() };
     return async (dispatch) => {
         try {
@@ -39,7 +42,7 @@ export const removeFav = (dataFav) => {
 };
 
 export const reset = () => {
-    const endpoint = PATHROUTES.RMFAV + "/999";
+    const endpoint = RM_FAV + "/999";
     return (dispatch) => {
         axios.delete(endpoint).then(({ data }) => {
             return dispatch({

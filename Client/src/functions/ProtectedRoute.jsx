@@ -6,5 +6,4 @@ const ProtectedRoute = ({ Access, redirectPath = "/" }) => {
     }
     return <Outlet />;
 };
-
 export default ProtectedRoute;

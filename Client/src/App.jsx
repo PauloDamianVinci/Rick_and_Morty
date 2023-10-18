@@ -12,13 +12,22 @@ import { useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addFav, saveIdUser } from "./redux/actions";
-
+// .env:
+const API_URL_BASE = import.meta.env.VITE_API_URL_BASE || 'http://localhost:3001/rickandmorty';
+const LOGIN_URL = import.meta.env.VITE_RM_LOGIN || '/login';
+const RM_LOGIN = API_URL_BASE + LOGIN_URL;
+const CHARS_URL = import.meta.env.VITE_RM_CHARS || '/character';
+const RM_CHARS = API_URL_BASE + CHARS_URL;
+const HOME = import.meta.env.VITE_HOME || '/home';
+const ABOUT = import.meta.env.VITE_ABOUT || '/about';
+const LOGIN = import.meta.env.VITE_LOGIN || '/';
+const ROOT = import.meta.env.VITE_ROOT || '/';
+const DETAIL = import.meta.env.VITE_DETAIL || '/detail/:id';
+const FAVORITES = import.meta.env.VITE_FAVORITES || '/favorites';
 // Otros:
 import axios from 'axios';
-import { PATHROUTES } from "./config/config";
 import randomGenerator from "./functions/randomGenerator";
 import ProtectedRoute from "./functions/ProtectedRoute";
-
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -32,7 +41,7 @@ const App = () => {
   const login = async (userData) => {
     const { mail, password } = userData;
     try {
-      const response = await axios.get(PATHROUTES.RMLOGIN + `?email=${mail}&password=${password}`)
+      const response = await axios.get(RM_LOGIN + `?email=${mail}&password=${password}`)
       const rta = response.data;
       const accOK = rta.access;
       const idUser = rta.id;
@@ -41,9 +50,8 @@ const App = () => {
         dispatch(saveIdUser(idUser));
         // traigo los favoritos previamente guardados:
         const newFav = { userId: idUser };
-        //console.log(newFav);
         dispatch(addFav(newFav));
-        navigate(`${PATHROUTES.HOME}`);
+        navigate(`${HOME}`);
       }
     } catch (error) {
       window.alert(error.message); //usar error.response.status para sólo el nro.
@@ -53,8 +61,7 @@ const App = () => {
   const logout = () => {
     setAccess(false); // Quito el acceso
     setCharacters([]); // elimino tarjetas
-    //dispatch(reset()); // elimino store
-    navigate(`${PATHROUTES.ROOT}`); // Cargo la pag de login
+    navigate(`${ROOT}`); // Cargo la pag de login
     setHide(false); // Vuelvo a permitir mostrar la barra de navegación:
   }
 
@@ -62,7 +69,7 @@ const App = () => {
     if (isLoading) return null; // para no ingresar mientras está en una búsqueda previa
     setIsLoading(true);
     try {
-      const response = await axios.get(`${PATHROUTES.RMCHARS}/${id}`)
+      const response = await axios.get(`${RM_CHARS}/${id}`)
       const data = response.data;
       // verifico repeticiones:
       const ids = characters.map(el => el.id);
@@ -72,7 +79,6 @@ const App = () => {
         if (mostrarMensajes) {
           window.alert('That character already exists!');
         } else {
-          //console.log("Id repetido. Busco otra vez...")
           const randomId = randomGenerator(826); // cuando estoy en random y me toca un repe, lo genero otra vez
           onSearch(randomId, false, setSearching);
         }
@@ -94,14 +100,14 @@ const App = () => {
 
   return (
     <div>
-      {location.pathname !== PATHROUTES.ROOT && < Nav hide={hide} onSearch={onSearch} logout={logout} />}
+      {location.pathname !== ROOT && < Nav hide={hide} onSearch={onSearch} logout={logout} />}
       <Routes>
-        <Route path={PATHROUTES.LOGIN} element={<Form login={login} />} />
+        <Route path={LOGIN} element={<Form login={login} />} />
         <Route element={<ProtectedRoute Access={access} />}>
-          <Route path={PATHROUTES.HOME} element={<Cards characters={characters} onClose={onClose} />} />
-          <Route path={PATHROUTES.ABOUT} element={<About />} />
-          <Route path={PATHROUTES.DETAIL} element={<Detail />} />
-          <Route path={PATHROUTES.FAVORITES} element={<Favorites />} />
+          <Route path={HOME} element={<Cards characters={characters} onClose={onClose} />} />
+          <Route path={ABOUT} element={<About />} />
+          <Route path={DETAIL} element={<Detail />} />
+          <Route path={FAVORITES} element={<Favorites />} />
         </Route>
         {/* envío setHide para ocultar la barra de navegación al mostrar error en página: */}
         <Route path="*" element={<ErrorView logout={logout} setHide={setHide} />} />

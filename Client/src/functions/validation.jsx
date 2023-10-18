@@ -21,5 +21,4 @@ const validator = (data) => {
 
     return errors;
 }
-
 export default validator;

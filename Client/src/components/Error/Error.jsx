@@ -1,10 +1,9 @@
 import style from "./Error.module.css";
-import { PATHVAR } from "../../config/config";
 import { useEffect } from "react";
+const IMG_404 = import.meta.env.VITE_IMG_404 || '/src/assets/404.jpg';
 
 const Error = (props) => {
     const { logout, setHide } = props;
-
     useEffect(() => {
         setHide(true); // es para que no se renderice la barra de navegación
     }, []);
@@ -13,7 +12,7 @@ const Error = (props) => {
         <div className={style.container}>
             <div className={style.datosDiv}>
                 <div className={style.containerImg}>
-                    <img className={style.img} src={PATHVAR.IMG_404} alt="" />
+                    <img className={style.img} src={IMG_404} alt="" />
                 </div>
                 <p className={style.contButton}>
                     <button className={style.Button} onClick={() => { logout(); }}>Restart</button>
@@ -22,5 +21,4 @@ const Error = (props) => {
         </div>
     )
 };
-
 export default Error;

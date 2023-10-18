@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { addFav, removeFav, filterCards } from "../../redux/actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PATHROUTES, PATHVAR } from "../../config/config";
 import style from "./Card.module.css";
 let { buttonFav, container, containerButtonImg, buttonClose, img, nameC, containerFeatures, features, containerImgCargando, imgCargando, idC, featuresCard } = style;
 
@@ -14,41 +13,35 @@ const Card = (props) => {
    const myFavorites = useSelector((state) => state.myFavorites);
    const myUserId = useSelector((state) => state.IdUser);
    const [isLoading, setIsLoading] = useState(true);
+   const [isHandling, setIsHandling] = useState(false);
+   const FAVORITES = import.meta.env.VITE_FAVORITES || '/favorites';
+   const DETAILBASE = import.meta.env.VITE_DETAILBASE || '/detail';
+   const IMG_ESPERA = import.meta.env.VITE_IMG_ESPERA || '/src/assets/portal-rick-and-morty.gif';
 
    const handleFavorite = () => {
-      //isFav ? dispatch(removeFav(id)) : dispatch(addFav(props));
+      if (isHandling) {
+         console.log("OCUPADO");
+         return;
+      };
+      setIsHandling(true);
       if (isFav) {
-         //dispatch(removeFav(id));
-         //console.log("Remove fav id ", id)
-
          const newFav = { userId: myUserId, id: id };
          dispatch(removeFav(newFav));
       } else {
-         //console.log(props);
-         //console.log("Add fav id ", props)
          const newFav = { userId: myUserId, ...props };
-         //console.log(newFav);
          dispatch(addFav(newFav));
       }
       setIsFav(!isFav);
+      setIsHandling(false);
    };
 
    useEffect(() => {
       setIsLoading(true);
-      // myFavorites.forEach((fav) => {
-      //    if (fav.id === props.id) {
-      //       setIsFav(true);
-      //    }
-      // });
       myFavorites.forEach((fav) => {
          if (fav.idChar === props.id) {
             setIsFav(true);
          }
       });
-
-
-      //console.log("myuserId ", myuserId)
-
       setIsLoading(false);
    }, [myFavorites]);
 
@@ -60,7 +53,7 @@ const Card = (props) => {
       <div className={container}>
          {isLoading ? (
             <div className={containerImgCargando}>
-               <img className={imgCargando} src={PATHVAR.IMG_ESPERA} alt="" />
+               <img className={imgCargando} src={IMG_ESPERA} alt="" />
             </div>
          ) : id ? (
             <div className={container}>
@@ -72,12 +65,12 @@ const Card = (props) => {
                         <button className={buttonFav} onClick={handleFavorite}>🤍</button>
                      )
                   }
-                  {pathname !== PATHROUTES.FAVORITES && (
+                  {pathname !== FAVORITES && (
                      <button className={buttonClose} onClick={handleClick}>X</button>
                   )}
                   <h2 className={idC}>{id}</h2>
                   <img className={img} src={image} alt="" />
-                  <Link to={`${PATHROUTES.DETAILBASE}/${id}`} >
+                  <Link to={`${DETAILBASE}/${id}`} >
                      <h2 className={nameC}>{name}</h2>
                   </Link>
                   <div className={containerFeatures}>
