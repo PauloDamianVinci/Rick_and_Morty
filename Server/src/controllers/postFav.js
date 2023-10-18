@@ -5,9 +5,9 @@ const postFav = async (req, res) => {
     try {
         if (id && userId && name && origin && status && image && species && gender) {
             const addFav = await Favorite.findOrCreate({
-                where: { userId: userId, name: name },
+                where: { userId: userId, idChar: id },
                 defaults: {
-                    name, origin, status, image, species, gender, userId, CharId: id
+                    name, origin, status, image, species, gender, userId, idChar: id
                 }
             });
         } // si no me carga los datos sólo devuelvo lo que tengo. Es para que al iniciar el programa, se traiga los fav almacenados para mostrar.
@@ -15,7 +15,6 @@ const postFav = async (req, res) => {
         const newFav = await Favorite.findAll({
             where: { userId: userId },
         });
-
         return res.status(200).json(newFav);
     } catch (err) {
         return res.status(500).send(err.message);

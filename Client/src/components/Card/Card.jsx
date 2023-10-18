@@ -41,7 +41,7 @@ const Card = (props) => {
       //    }
       // });
       myFavorites.forEach((fav) => {
-         if (fav.CharId === props.id) {
+         if (fav.idChar === props.id) {
             setIsFav(true);
          }
       });

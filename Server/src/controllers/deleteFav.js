@@ -7,7 +7,7 @@ const deleteFav = async (req, res) => {
     try {
         if (!id) return res.status(401).send("Falta id");
         const findFav = await Favorite.findOne({
-            where: { CharId: id, userId: userId },
+            where: { idChar: id, userId: userId },
         });
         if (!findFav) { return res.status(404).send("No encontrado"); };
         findFav.destroy();

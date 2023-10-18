@@ -63,8 +63,8 @@ const Favorites = () => {
                     ) : myFavorites ? (
                         myFavorites.map((character) => (
                             <Card
-                                id={character.CharId}
-                                key={character.CharId}
+                                id={character.idChar}
+                                key={character.idChar}
                                 name={character.name}
                                 species={character.species}
                                 gender={character.gender}
