@@ -1,7 +1,8 @@
 {
-  "name": "rick_morty",
+  "name": "rick_morty_front",
   "private": true,
   "version": "0.0.0",
+  "description": "Rick and Morty front end",
   "type": "module",
   "scripts": {
     "dev": "vite",
