@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('pg'); // requerido por Vercel
 const { Sequelize } = require('sequelize');
 
 const DB_USER = process.env.DB_USER || 'postgres';
