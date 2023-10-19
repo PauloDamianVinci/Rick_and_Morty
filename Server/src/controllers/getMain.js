@@ -2,10 +2,10 @@ const getMain = async (req, res) => {
     const htmResponse = `
             <html>
                 <head>
-                    <title>Backend corriendo</title>
+                    <title>Backend running</title>
                 </head>
                 <body>
-                    <h1>Corriendo</h1>
+                    <h1>Running</h1>
                 </body>
             </html>`;
     res.send(htmResponse);

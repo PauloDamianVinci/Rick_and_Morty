@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('pg'); // requerido por Vercel
+require('pg'); // requerido por Vercel para deploy
 const { Sequelize } = require('sequelize');
 
 const DB_USER = process.env.DB_USER || 'postgres';
@@ -29,8 +29,8 @@ UserModel(database);
 FavoriteModel(database);
 // Relacionar modelos:
 const { User, Favorite } = database.models;
-//User.belongsToMany(Favorite, { through: "user_favorite" });
-//Favorite.belongsToMany(User, { through: "user_favorite" });
+User.belongsToMany(Favorite, { through: "user_favorite" });
+Favorite.belongsToMany(User, { through: "user_favorite" });
 
 module.exports = {
    User,

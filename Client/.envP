@@ -1,4 +1,4 @@
-VITE_API_URL_BASE=http://localhost:3001/rickandmorty
+VITE_API_URL_BASE=https://rick-and-morty-back-one.vercel.app/rickandmorty
 VITE_ROOT=/
 VITE_LOGIN=/
 VITE_HOME=/home

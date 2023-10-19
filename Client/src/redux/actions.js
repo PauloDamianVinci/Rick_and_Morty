@@ -15,10 +15,16 @@ export const addFav = (character) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character);
+
+            //console.log(data);
+
+
+
             return dispatch({
                 type: ADD_FAV,
                 payload: data,
             });
+
         } catch (error) {
             console.error("Error while adding to favorites:", error.message);
         }

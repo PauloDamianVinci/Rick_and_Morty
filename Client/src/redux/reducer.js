@@ -14,6 +14,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 IdUser: payload,
             };
         case ADD_FAV:
+            //console.log("payload ", payload);
             return { ...state, myFavorites: payload, allCharacters: payload };
         case REMOVE_FAV:
             return { ...state, myFavorites: payload, allCharacters: payload };

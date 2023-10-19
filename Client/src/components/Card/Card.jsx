@@ -20,7 +20,7 @@ const Card = (props) => {
 
    const handleFavorite = () => {
       if (isHandling) {
-         console.log("OCUPADO");
+         //console.log("OCUPADO");
          return;
       };
       setIsHandling(true);
@@ -38,7 +38,7 @@ const Card = (props) => {
    useEffect(() => {
       setIsLoading(true);
       myFavorites.forEach((fav) => {
-         if (fav.idChar === props.id) {
+         if (fav.id === props.id) {
             setIsFav(true);
          }
       });

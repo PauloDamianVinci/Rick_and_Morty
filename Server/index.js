@@ -1,3 +1,5 @@
+// ! No mover este archivo a otra ubicación porque Vercel no lo va a entender a la hora del deploy
+
 require('dotenv').config();
 const server = require("./src/app");
 const { conn } = require('./src/DB_connection');
