@@ -15,11 +15,6 @@ export const addFav = (character) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character);
-
-            //console.log(data);
-
-
-
             return dispatch({
                 type: ADD_FAV,
                 payload: data,
@@ -44,18 +39,6 @@ export const removeFav = (dataFav) => {
         } catch (error) {
             console.error("Error while removing from favorites:", error.message);
         }
-    };
-};
-
-export const reset = () => {
-    const endpoint = RM_FAV + "/999";
-    return (dispatch) => {
-        axios.delete(endpoint).then(({ data }) => {
-            return dispatch({
-                type: 'RESET',
-                payload: data,
-            });
-        });
     };
 };
 
