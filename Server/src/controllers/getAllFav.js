@@ -1,4 +1,3 @@
-//const { Favorite } = require('../DB_connection');
 const { User } = require('../DB_connection');
 
 const getAllFav = async (userId) => {

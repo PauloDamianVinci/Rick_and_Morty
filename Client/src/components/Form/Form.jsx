@@ -26,11 +26,6 @@ const Form = (props) => {
     }
 
     const handleSubmit = (event) => {
-
-        console.log(IMG_LOGIN);
-
-
-
         event.preventDefault();
         login(userData);
     }

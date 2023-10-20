@@ -8,7 +8,6 @@ const deleteFav = async (req, res) => {
     console.log("deleteFav id ", id, ", user  ", userId);
     try {
         if (!id) return res.status(401).send("Falta id");
-
         // Verifico si el usuario existe:
         const user = await User.findByPk(userId);
         if (!user) { return res.status(404).json({ error: 'User not found' }); }
@@ -19,7 +18,6 @@ const deleteFav = async (req, res) => {
         await user.removeFavorite(favorite);
         // devuelvo todos los favoritos del usuario:
         const allFav = await getAllFav(userId);
-        //        console.log("ALL-> ", allFav);
         return res.status(200).json(allFav);
     } catch (err) {
         console.log("ERROR-> ", err.message);
