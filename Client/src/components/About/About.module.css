@@ -10,15 +10,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .img {
     max-width: 20%;
     border-radius: 10%;
     border: 2px solid #0ea591;
-
     min-width: 230px;
 }
 
@@ -36,7 +33,7 @@
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    padding-left: 10%;
+    /* padding-left: 10%; */
     text-align: center;
 }
 
@@ -46,6 +43,6 @@
     font-size: 14px;
     display: flex;
     flex-direction: column;
-    padding-left: 10%;
+    padding-left: 2%;
     text-align: left;
 }
