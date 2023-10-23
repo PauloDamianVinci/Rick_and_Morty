@@ -65,11 +65,11 @@ a {
     box-sizing: border-box;
     color: #0ea591;
     display: block;
-    height: 40;
     font-size: 1.4em;
     padding: 4px;
     position: relative;
     width: 4em;
+    height: 1.5em;
     z-index: 2;
     margin: 10px;
 }
@@ -84,11 +84,11 @@ a {
     border-radius: 40px;
     display: flex;
     justify-content: center;
-    height: 100%;
     transition: background 0.5s ease;
-    width: 100%;
     color: #0ea591;
     font-size: 14px;
+    height: 100%;
+    width: 100%;
 }
 
 .contButton:hover .Button {
