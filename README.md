@@ -3,7 +3,7 @@
 
 # **Rick and Morty**
 
-Este proyecto forma parte del curso FullStack de Henry. El objetivo principal de este proyecto es ir aplicando los conceptos en la medida que se aprenden a partir de las lectures. Es una aplicación que permite consultar información sobre los personajes de Rick and Morty.
+Este proyecto forma parte del curso FullStack de Henry. Su objetivo principal es ir aplicando los conceptos en la medida que se aprenden a partir de las lectures. Es una aplicación que permite consultar información sobre los personajes de Rick and Morty.
 
 ## **🧾 Principales funcionalidades**
 
